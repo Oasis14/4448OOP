@@ -7,7 +7,7 @@ void setup() {
   size(1200, 800);
   surface.setResizable(true);
   
-  //frameRate(15);
+  frameRate(30);
   Logger = new Log();
   
   mouse = new Mouse(millis());

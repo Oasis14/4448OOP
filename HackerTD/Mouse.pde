@@ -39,12 +39,12 @@ class Mouse {
     lastMousePressed = pressed;
     if (logging) {
       if (currentEvent == "click") {
-        LogLine l = new LogLine("Mouse click at: " + str(time), time, 5000);
-        Logger.addLine(l);
+        LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
+        Logger.add_line(l);
       }
       if (currentEvent == "hold") {
-        LogLine l = new LogLine("Mouse hold at: " + str(time), time, 5000);
-        Logger.addLine(l);
+        LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
+        Logger.add_line(l);
       }
     }
   }
