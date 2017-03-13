@@ -30,7 +30,7 @@ void draw() {
 
 
 
-boolean overRect (int x, int y, int rectWidth, int rectHeight) {
+boolean over_rect (int x, int y, int rectWidth, int rectHeight) {
   if (mouseX >= x && mouseX <= x+width && 
       mouseY >= y && mouseY <= y+height) {
     return true;

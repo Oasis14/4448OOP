@@ -35,7 +35,7 @@ class Log {
       ypos += 10;
     }
   }
-  void addLine (LogLine l) {
+  void add_line (LogLine l) {
     logLines.add(l);
   } 
 }
