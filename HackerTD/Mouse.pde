@@ -11,8 +11,7 @@ class Mouse {
     lastMousePressed = false;
   }
   
-  void update(int time, boolean pressed, boolean logging) {
-    //TODO: be able to differentiate between clicks, holds, and such
+  void update(int time, boolean pressed) {
     if (pressed) {
       if (lastMousePressed) {
         if ((time - lastChangeTime) > clickTime) {
@@ -37,16 +36,6 @@ class Mouse {
       }
     }
     lastMousePressed = pressed;
-    if (logging) {
-      if (currentEvent == "click") {
-        LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-        Logger.add_line(l);
-      }
-      if (currentEvent == "hold") {
-        LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-        Logger.add_line(l);
-      }
-    }
   }
   
 }

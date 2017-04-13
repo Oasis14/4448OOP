@@ -1,13 +1,19 @@
 class Tower {
-   int x, y, hp, dmg, cost, upCost, atkSpd;
-   PImage sprite;
-   //Projectile projectileObj;
-   //Tower upgradeTower;
+   private int x_pos, y_pos;// cost, upCost, atkSpd, hp, dmg;
+   private PImage sprite;
+   private String name;
+   private Projectile projectile;
+   private Tower upgradeTower;
    
-   /*void Tower () {
-     
-   }*/
-   
+   Tower (int xIn, int yIn, String nameIn, String imageIn) {
+     x_pos = xIn;
+     y_pos = yIn;
+     name = nameIn;
+     sprite = loadImage(imageIn);
+   }
+   void display() {
+     image(sprite, x_pos, y_pos); 
+   }
    /*void shoot () {
      
    }
@@ -20,7 +26,7 @@ class Tower {
    void refund () {
      
    }
-   void damage () {
+   void damage (int dmg) {
      
    }*/
 }
