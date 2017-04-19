@@ -2,6 +2,7 @@ Log logger;
 int background = 0;
 Mouse mouse;
 Map testMap;
+Menu testMenu;
 
 void setup() {
   size(1200, 800);
@@ -11,8 +12,9 @@ void setup() {
   
   logger = new Log();
   mouse = new Mouse(millis());
-  testMap = new Map(100, 0);
+  testMap = new Map(100, 100);
   testMap.addTower("basicTower", 400, 400);
+  testMenu = new Menu("testMenu");
 }
 
 void draw() {
@@ -20,7 +22,14 @@ void draw() {
   mouse.update(time, mousePressed);
   mouseLogging(time);
   
+  testMenu.update(time);
+  if (testMenu.name == "gameMenu") {
+    testMap.update(time);
+  }
+  
+  testMenu.display();
   testMap.display();
+  fill(255);
   text(str(time), width-100, 10);
   
   

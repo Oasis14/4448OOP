@@ -23,10 +23,14 @@ class Map {
     return false;
   }
   
+  void update(int time) {
+    
+  }
+  
   void display () {
     background(background);
-    for (Tower tower : towerList) {
+    /*for (Tower tower : towerList) {
       tower.display();
-    }
+    }*/
   }
 }
