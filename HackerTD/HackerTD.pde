@@ -27,10 +27,11 @@ void draw() {
     testMap.update(time);
   }
   
-  testMenu.display();
+  
   testMap.display();
   fill(255);
   text(str(time), width-100, 10);
+  testMenu.display();
   
   
   logger.update(time);
