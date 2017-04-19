@@ -1,4 +1,4 @@
-class Creep {
+class Creep implements Cloneable {
   private int bounty;
   private float angle;
   private PathPoint pathPoint;

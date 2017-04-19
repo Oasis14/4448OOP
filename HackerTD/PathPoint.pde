@@ -3,7 +3,7 @@ class PathPoint {
   private float yPos;
   private PathPoint nextPath;
   private Boolean isBase;
-  
+
   // Path Points will need to be created at the end and go back to beginning
   PathPoint(float x, float y, PathPoint nextPath){
     this.xPos = x;
@@ -44,7 +44,7 @@ class PathPoint {
     if(this.xPos >= hitbox.getVertex(0).x && this.xPos <= hitbox.getVertex(1).x){
       // if x position is correct, check Y position
       if(this.yPos <= hitbox.getVertex(0).y && this.yPos >= hitbox.getVertex(3).y){
-        return true;
+          return true;
       }
     }
     return false;

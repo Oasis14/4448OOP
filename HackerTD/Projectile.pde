@@ -1,3 +1,3 @@
-class Projectile {
+class Projectile implements Cloneable {
   
 }

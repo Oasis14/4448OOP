@@ -3,25 +3,31 @@ class Map {
   private ArrayList<Creep> creepList;
   private ArrayList<Tower> towerList;
   private ArrayList<Projectile> projectileList;
-  private HashMap protoTowers;
-  private HashMap protoCreeps;
-  private HashMap protoProjectiles;
+  private HashMap<String, Tower> protoTowers;
+  private HashMap<String, Creep> protoCreeps;
+  private HashMap<String, Projectile> protoProjectiles;
   private PathPoint startPoint;
   private int baseHealth;
   private int background;
   
   Map (int bH, int backg) {
-    baseHealth = bH;
-    background = backg;
+    this.baseHealth = bH;
+    this.background = backg;
+    this.protoTowers = new HashMap<String, Tower>();
+    this.protoProjectiles = new HashMap<String, Projectile>();
+    this.protoCreeps = new HashMap<String, Creep>();
+    this.pathPoints = new ArrayList<PathPoint>();
+    this.creepList = new ArrayList<Creep>();
+    this.towerList = new ArrayList<Tower>();
+
+    
+    this.protoTowers.put("basicTower", new Tower(0,0,  "testTower", "testImage.png"));
   }
   
-  boolean addTower(String towerKey, int x, int y) {
-    if (towerKey == "testTower") {
-      towerList.add(new Tower(x,y,"testTower", "testImage.png"));
-      return true;
+  boolean addTower(String towerKey, int x, int y){
+    towerList.add( (Tower) protoTowers.get(towerKey).placeTower(x,y)) ;
+    return true;
     }
-    return false;
-  }
   
   void update(int time) {
     
@@ -29,8 +35,8 @@ class Map {
   
   void display () {
     background(background);
-    /*for (Tower tower : towerList) {
+    for (Tower tower : towerList) {
       tower.display();
-    }*/
+    }
   }
 }

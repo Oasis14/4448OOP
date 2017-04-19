@@ -13,7 +13,7 @@ void setup() {
   logger = new Log();
   mouse = new Mouse(millis());
   testMap = new Map(100, 100);
-  testMap.addTower("basicTower", 400, 400);
+  //testMap.addTower("basicTower", 400, 400);
   testMenu = new Menu("testMenu");
 }
 
@@ -31,7 +31,7 @@ void draw() {
   testMap.display();
   fill(255);
   text(str(time), width-100, 10);
-  testMenu.display();
+  //testMenu.display();
   
   
   logger.update(time);
@@ -42,6 +42,8 @@ void mouseLogging(int time) {
     if (mouse.currentEvent == "click") {
       LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
       logger.add_line(l);
+      testMap.addTower("basicTower", mouseX, mouseY); // This is Testing code
+
     }
     if (mouse.currentEvent == "hold") {
       LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
@@ -51,8 +53,8 @@ void mouseLogging(int time) {
 
 
 boolean over_rect (int x, int y, int rectWidth, int rectHeight) {
-  if (mouseX >= x && mouseX <= x+width && 
-      mouseY >= y && mouseY <= y+height) {
+  if (mouseX >= x && mouseX <= x+rectWidth && 
+      mouseY >= y && mouseY <= y+rectHeight) {
     return true;
   } else {
     return false;
