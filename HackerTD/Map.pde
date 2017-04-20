@@ -108,6 +108,13 @@ class Map {
     projectileList.add( (Projectile) projectileProto.shootProjectile(x,y, target)) ;
   }
   
+  /**
+  * Remove this projectile from the map
+  * @param projectile the projectile to remove from the arrayList
+  **/
+  public void removeProjectile(Projectile projectile){
+    this.projectileList.remove(projectile);
+  }
   
   void update(int time) {
     
@@ -119,6 +126,9 @@ class Map {
   **/
   void display () {
     background(background);
+
+    projectilesToRemove = new ArrayList();
+    creepsToRemove = new ArrayList();
     
     for (PathPoint point : pathPoints) {
       point.display();
@@ -140,6 +150,10 @@ class Map {
       projectile.update();
       projectile.display();
     }
+    
+    projectileList.removeAll(projectilesToRemove);
+    creepList.removeAll(creepsToRemove);
+
 
   }
 }

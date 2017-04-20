@@ -5,6 +5,9 @@ Map currentMap;
 Menu menu;
 Player player;
 Boolean paused;
+ArrayList projectilesToRemove;
+ArrayList creepsToRemove;
+
 
 void setup() {
   size(1200, 800);
@@ -18,7 +21,8 @@ void setup() {
   currentMap = map1();
   paused=false;
   menu = new GameMenu();
-
+  projectilesToRemove = new ArrayList();
+  creepsToRemove = new ArrayList();
 }
 
 void draw() {

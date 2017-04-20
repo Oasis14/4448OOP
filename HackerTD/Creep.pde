@@ -86,6 +86,28 @@ class Creep implements Cloneable {
    // Maybe a public method on map?
  }
  
+   public Boolean collide(Projectile projectile){    
+    /** Vertex indices of rectangle
+    *         y1
+    *    o -------- o
+    * x1 |          | x2
+    *    o -------- o
+    *         y2
+    **/
+    // Checks x position
+    
+    if( this.xPos >= projectile.getX()  &&  this.xPos <= projectile.getX() + 80){ // TODO :FIX THIS SHIT CODE
+      // if x position is correct, check Y position
+      println("yPos: " + this.yPos + "  yProj " + projectile.getY());
+      if(this.yPos >= projectile.getY() - 40 &&  this.yPos <= projectile.getY() + 30){
+         print("YES");
+         return true;
+      }
+    }
+    return false;
+  }
+ 
+ 
  /**
  * Deal damage to surrounding towers
  **/
@@ -139,8 +161,11 @@ class Creep implements Cloneable {
  **/
  public FloatDict getPos(){
   FloatDict position = new FloatDict();
-  position.set("x", this.xPos);
+  position.set("x", this.xPos );
   position.set("y", this.yPos);
+  position.set("centerX", this.xPos + this.sprite.width/2);
+  position.set("centerY", this.yPos + this.sprite.height/2);
+
   return position;
  }
  

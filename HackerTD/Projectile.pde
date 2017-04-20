@@ -23,7 +23,16 @@ class Projectile implements Cloneable {
    * Function to update the logic
    **/
    public void update(){
-    this.updatePos();
+      if(this.target.collide(this)){
+       //If we hit the enemy
+       //creep.takeAwayLife();
+       projectilesToRemove.add(this);
+       creepsToRemove.add(this.target);
+       println("HIT");
+     }
+     else{
+      this.updatePos();
+     }
    }
    
    /**
@@ -31,7 +40,7 @@ class Projectile implements Cloneable {
    **/
    public void updatePos(){
      FloatDict targetPos = this.target.getPos();
-     float slopeGrade = (targetPos.get("x") - this.xPos) / ( targetPos.get("y") - this.yPos);
+     float slopeGrade = (targetPos.get("centerX") - this.xPos) / ( targetPos.get("centerY") - this.yPos);
     
     /** 
     * Use trig to get y += cos(theta) * speed
@@ -40,7 +49,7 @@ class Projectile implements Cloneable {
     **/
     
     int yMult;
-    if(targetPos.get("y") - this.yPos >= 0){
+    if(targetPos.get("centerY") - this.yPos >= 0){
       yMult = 1;
     }else{
       yMult = -1;
@@ -52,7 +61,7 @@ class Projectile implements Cloneable {
      
     // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
     int xMult;
-    if(targetPos.get("x") - this.xPos >= 0){
+    if(targetPos.get("centerX") - this.xPos >= 0){
       xMult = 1;
     }else{
       xMult = -1;
@@ -76,6 +85,14 @@ class Projectile implements Cloneable {
        return null;
      }
    }
+   
+   public float getX(){
+    return this.xPos;
+  }
+  
+  public float getY(){
+    return this.yPos;
+  }
    
     protected Object clone() throws CloneNotSupportedException
     {
