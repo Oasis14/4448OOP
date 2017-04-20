@@ -7,43 +7,72 @@ class Creep implements Cloneable {
   private float yPos;
   private int speed;
   private int hp;
-  private PShape hitbox;
+  private FloatDict hitbox;
   
   public int ID;
   
   
- Creep(){
-   this.sprite = loadImage("laDefense.jpg");
- }
+   Creep (int xIn, int yIn, String imageIn) {
+     println(xIn);
+      this.xPos = xIn;
+      this.yPos = yIn;
+      this.speed = 5;
+      this.sprite = loadImage(imageIn);
+      
+      this.hitbox = new FloatDict();
+
+   }
  
  /**
  * First checks collision to see if we're at pathpoint
  * Updates to new pathPoint if there's a collision
  * Moves in a direct line to the next pathPoint by this.speed amount
  **/
- public void path() throws Exception{
+ public void path(){
    if(this.pathPoint.collide(this.hitbox)){
      //If we hit the base
      if(this.pathPoint.isBase()){
         //GetGlobalMap().takeAwayLife();
         this.die();
      }
-     this.pathPoint = this.pathPoint.getNextPoint();
-   }
-   
-  float distToPoint = this.pathPoint.getX() - this.xPos / ( this.pathPoint.getY() - this.yPos);
+     else{
+       this.pathPoint = this.pathPoint.getNextPoint();
+     }
+ }
+ 
+  float distToPoint = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
+  println(this.pathPoint.getX() - this.xPos);
   
   /** 
   * Use trig to get y += cos(theta) * speed
   * theta = arctan( (x_2 - x_1) / (y_2 - y_1) )
   * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
   **/
-  float yFactor = 1 / ( sqrt(distToPoint) + 1);
-  this.yPos += yFactor * this.speed;
+  int yMult;
+  if(this.pathPoint.getY() - this.yPos >= 0){
+    yMult = 1;
+  }else{
+    yMult = -1;
+  }
+  float yFactor = yMult / ( sqrt(pow(distToPoint,2) + 1));
+  float yTranslation = yFactor * this.speed;
+  this.yPos += yTranslation;
+  this.hitbox.set("y1", this.hitbox.get("y1") + yTranslation);
+  this.hitbox.set("y2", this.hitbox.get("y2") + yTranslation);
    
   // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
-  float xFactor = distToPoint / ( sqrt(distToPoint) + 1);
-  this.xPos += xFactor * this.speed;
+  int xMult;
+  if(this.pathPoint.getX() - this.xPos >= 0){
+    xMult = 1;
+  }else{
+    xMult = -1;
+  }
+  float xFactor = xMult * distToPoint / ( sqrt(pow(distToPoint,2) + 1));
+  float xTranslation = xFactor * this.speed;
+  this.xPos += xTranslation;
+  this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
+  this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
+  
  }
  
  
@@ -52,6 +81,7 @@ class Creep implements Cloneable {
  * reached the enemy base
  **/
  public void die(){
+   player.addMoney(this.bounty);
    // How will this work? This needs to access Map to remove a creep from CreepList
    // Maybe a public method on map?
  }
@@ -80,7 +110,6 @@ class Creep implements Cloneable {
  **/
  public void display(){
    image(this.sprite, this.xPos, this.yPos);
-   rotate(90); // Not sure how to rotate
  }
  /**
  * Public function so that external classes can determine if this has died
@@ -92,7 +121,7 @@ class Creep implements Cloneable {
  /**
  * Update function called that changes the state of this creep on each frame
  **/
- public void update() throws Exception{
+ public void update(){
    path();
  }
  
@@ -106,6 +135,30 @@ class Creep implements Cloneable {
   position.set("y", this.yPos);
   return position;
  }
+ 
+  protected Object placeCreep(int x, int y, PathPoint startPoint){
+    this.xPos = x - this.sprite.width / 2;
+    this.yPos = y - this.sprite.height / 2;
+   
+    this.hitbox.add("x1", this.xPos);
+    this.hitbox.add("x2", this.xPos+this.sprite.width);
+    this.hitbox.add("y1", this.yPos);
+    this.hitbox.add("y2", this.yPos+this.sprite.height);
+   
+   this.pathPoint = startPoint;
+   try{
+     return this.clone();
+   }
+   catch(CloneNotSupportedException e)
+   {
+     return null;
+   }
+   }
+   
+  protected Object clone() throws CloneNotSupportedException
+  {
+      return super.clone();
+  }
  
  
   

@@ -1,8 +1,10 @@
 Log logger; 
 int background = 0;
 Mouse mouse;
-Map testMap;
+Map currentMap;
 Menu testMenu;
+Player player;
+
 
 void setup() {
   size(1200, 800);
@@ -10,10 +12,10 @@ void setup() {
   
   frameRate(30);
   
+  player = new Player();
   logger = new Log();
   mouse = new Mouse(millis());
-  testMap = new Map(100, 100);
-  //testMap.addTower("basicTower", 400, 400);
+  currentMap = map1();
   testMenu = new Menu("testMenu");
 }
 
@@ -24,11 +26,11 @@ void draw() {
   
   testMenu.update(time);
   if (testMenu.name == "gameMenu") {
-    testMap.update(time);
+    currentMap.update(time);
   }
   
   
-  testMap.display();
+  currentMap.display();
   fill(255);
   text(str(time), width-100, 10);
   //testMenu.display();
@@ -40,9 +42,9 @@ void draw() {
 
 void mouseLogging(int time) {
     if (mouse.currentEvent == "click") {
+      currentMap.addTower("basicTower", mouseX, mouseY); // This is Testing code
       LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
       logger.add_line(l);
-      testMap.addTower("basicTower", mouseX, mouseY); // This is Testing code
 
     }
     if (mouse.currentEvent == "hold") {
@@ -59,4 +61,25 @@ boolean over_rect (int x, int y, int rectWidth, int rectHeight) {
   } else {
     return false;
   }  
+}
+
+Map map1(){
+  // Instantiate base map
+  Map map = new Map(100, 100);
+  
+  //Add path points
+  map.addPathPoint(900, 550);
+  map.addPathPoint(550, 700);
+  map.addPathPoint(550, 200);
+  map.addPathPoint(350, 200);
+  map.addPathPoint(350, 500);
+  map.addPathPoint(50, 500);
+  map.addPathPoint(50, 50);
+
+
+  
+  //Populate creeps
+  map.addCreep("basicCreep", 400, 400);
+
+  return map;
 }
