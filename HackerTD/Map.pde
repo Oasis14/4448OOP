@@ -28,10 +28,20 @@ class Map {
     this.protoCreeps.put("basicCreep2", new Creep("basicCreep2.png"));
   }
   
+  /**
+ * Function to add a tower to the map
+ * @param String towerKey Name of the tower to be spawned from the proto list
+ * @param int x position to spawn it at
+ * @param int y position to spawn it at
+ **/
   public void addTower(String towerKey, int x, int y){
     towerList.add( (Tower) protoTowers.get(towerKey).placeTower(x,y)) ;
   }
   
+  /**
+  * Function to remove a tower from the map if it is destroyed or refunded
+  * @param int ID of tower to be removed
+  **/
   public void removeTower(int ID){
     for (Tower tower : towerList){
       /** Need to implement ID on towers
@@ -42,10 +52,22 @@ class Map {
     }
   }
   
+  /**
+  * Add a creep to the map
+  * @param String creepKey Key of creep to be cloned from proto list
+  * @param int x position to spawn at
+  * @param int y position to spawn at
+  * @param int delay How many milliseconds to delay pathing
+  **/
   public void addCreep(String creepKey, int x, int y, int delay){
     creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(x,y, this.startPoint, delay)) ;
   }
   
+  /**
+  * Add a path point to the map at given location and link it to any previously placed PathPoints
+  * @param int x position for path point to spawn
+  * @param int y position for path point to spawn
+  **/
   public void addPathPoint(int x, int y){
     PathPoint nextPoint;
     if (pathPoints.isEmpty()){
@@ -63,6 +85,10 @@ class Map {
     
   }
   
+  /**
+  * Function to display all the elements in the map
+  * Order determines that pathPoints are at the bottom and towers are at top
+  **/
   void display () {
     background(background);
     
@@ -70,15 +96,16 @@ class Map {
       point.display();
     }
     
+    for (Creep creep : creepList) {
+      if (creep.getActive()){
+        creep.update();
+        creep.display();
+      }
+    }
+    
     for (Tower tower : towerList) {
       tower.display();
     }
-    
-    for (Creep creep : creepList) {
-      creep.update();
-      creep.display();
-    }
-    
 
   }
 }
