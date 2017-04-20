@@ -41,7 +41,6 @@ class Creep implements Cloneable {
  }
  
   float distToPoint = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
-  println(this.pathPoint.getX() - this.xPos);
   
   /** 
   * Use trig to get y += cos(theta) * speed
