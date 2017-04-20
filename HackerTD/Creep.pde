@@ -3,22 +3,16 @@ class Creep implements Cloneable {
   private float angle;
   private PathPoint pathPoint;
   private PImage sprite;
-  private float xPos;
-  private float yPos;
+  private float xPos, yPos;
   private int speed;
   private int hp;
   private FloatDict hitbox;
-  private int spawnFrame;
-  private int delay;
-  
-  
+  private int spawnFrame, delay;
   public int ID;
   
-  
-   Creep (String imageIn) {
+  Creep (String imageIn) {
       this.speed = 3;
       this.sprite = loadImage(imageIn);
-      this.hitbox = new FloatDict();
 
    }
  
@@ -37,49 +31,46 @@ class Creep implements Cloneable {
      else{
        this.pathPoint = this.pathPoint.getNextPoint();
      }
- }
- 
- if(frameCount < this.spawnFrame+this.delay){
-   return;
- }
- 
-  float slopeGrade = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
-  
-  /** 
-  * Use trig to get y += cos(theta) * speed
-  * theta = arctan( (x_2 - x_1) / (y_2 - y_1) )
-  * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
-  **/
-  int yMult;
-  if(this.pathPoint.getY() - this.yPos >= 0){
-    yMult = 1;
-  }else{
-    yMult = -1;
-  }
-  float yFactor = yMult / ( sqrt(pow(slopeGrade, 2) + 1));
-  float yTranslation = yFactor * this.speed;
-  this.yPos += yTranslation;
-  this.hitbox.set("y1", this.hitbox.get("y1") + yTranslation);
-  this.hitbox.set("y2", this.hitbox.get("y2") + yTranslation);
+   }
    
-  // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
-  int xMult;
-  if(this.pathPoint.getX() - this.xPos >= 0){
-    xMult = 1;
-  }else{
-    xMult = -1;
-  }
-  float xFactor = xMult * abs(slopeGrade) / ( sqrt(pow(slopeGrade, 2) + 1));
-  float xTranslation = xFactor * this.speed;
-  this.xPos += xTranslation;
-  this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
-  this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
-  
-  text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
-  text("Angle: " + atan(slopeGrade), 10, 720);
-  text("Creep X1: " + (int) hitbox.get("x1") + " Creep X2: " + (int) hitbox.get("x2"), 10, 740);
-  text("Creep Y1: " + (int) hitbox.get("y1") + " Creep Y2: " + (int) hitbox.get("y2"), 10, 760);
-  text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
+   
+    float slopeGrade = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
+    
+    /** 
+    * Use trig to get y += cos(theta) * speed
+    * theta = arctan( (x_2 - x_1) / (y_2 - y_1) )
+    * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
+    **/
+    int yMult;
+    if(this.pathPoint.getY() - this.yPos >= 0){
+      yMult = 1;
+    }else{
+      yMult = -1;
+    }
+    float yFactor = yMult / ( sqrt(pow(slopeGrade, 2) + 1));
+    float yTranslation = yFactor * this.speed;
+    this.yPos += yTranslation;
+    this.hitbox.set("y1", this.hitbox.get("y1") + yTranslation);
+    this.hitbox.set("y2", this.hitbox.get("y2") + yTranslation);
+     
+    // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
+    int xMult;
+    if(this.pathPoint.getX() - this.xPos >= 0){
+      xMult = 1;
+    }else{
+      xMult = -1;
+    }
+    float xFactor = xMult * abs(slopeGrade) / ( sqrt(pow(slopeGrade, 2) + 1));
+    float xTranslation = xFactor * this.speed;
+    this.xPos += xTranslation;
+    this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
+    this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
+    
+    text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
+    text("Angle: " + atan(slopeGrade), 10, 720);
+    text("Creep X1: " + (int) hitbox.get("x1") + " Creep X2: " + (int) hitbox.get("x2"), 10, 740);
+    text("Creep Y1: " + (int) hitbox.get("y1") + " Creep Y2: " + (int) hitbox.get("y2"), 10, 760);
+    text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
 
 
  }
@@ -128,6 +119,14 @@ class Creep implements Cloneable {
  }
  
  /**
+ * Return whether the creep has spawned yet 
+ * @return Boolean
+ **/
+ public Boolean getActive(){
+   return frameCount >= this.spawnFrame+this.delay;
+ }
+ 
+ /**
  * Update function called that changes the state of this creep on each frame
  **/
  public void update(){
@@ -158,29 +157,34 @@ protected Object placeCreep(int x, int y, PathPoint startPoint, int delay){
     this.xPos = x - this.sprite.width / 2;
     this.yPos = y - this.sprite.height / 2;
     
+
+
+    
     this.spawnFrame = frameCount;
     this.delay = delay;
     
+    this.hitbox = new FloatDict(); // clone() makes a shallow copy. Need to instantiate all objects again
     this.hitbox.add("x1", this.xPos);
     this.hitbox.add("x2", this.xPos+this.sprite.width);
     this.hitbox.add("y1", this.yPos);
     this.hitbox.add("y2", this.yPos+this.sprite.height);
-   
-   this.pathPoint = startPoint;
-   
-   try{
-     return this.clone();
-   }
-   catch(CloneNotSupportedException e)
-   {
-     return null;
-   }
-   }
-   
-  protected Object clone() throws CloneNotSupportedException
-  {
-      return super.clone();
-  }
+
+     println(this.hitbox);
+     this.pathPoint = startPoint;
+     
+     try{
+       return this.clone();
+     }
+     catch(CloneNotSupportedException e)
+     {
+       return null;
+     }
+     }
+     
+    protected Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
+    }
  
  
   

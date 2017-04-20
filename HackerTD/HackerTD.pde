@@ -4,7 +4,7 @@ Mouse mouse;
 Map currentMap;
 Menu testMenu;
 Player player;
-
+Boolean paused;
 
 void setup() {
   size(1200, 800);
@@ -18,6 +18,7 @@ void setup() {
   currentMap = map1();
   testMenu = new Menu("testMenu");
   testMenu = new GameMenu("testMenu");
+  paused=false;
 }
 
 void draw() {
@@ -26,7 +27,7 @@ void draw() {
   mouseLogging(time);
   
   testMenu.update(time);
-  if (testMenu.name == "gameMenu") {
+  if (testMenu.name == "gameMenu" && paused == false) {
     currentMap.update(time);
   }
   
@@ -34,7 +35,7 @@ void draw() {
   currentMap.display();
   fill(255);
   text(str(time), width-100, 10);
-  //testMenu.display();
+  testMenu.display();
   
   
   logger.update(time);
@@ -80,8 +81,16 @@ Map map1(){
 
   
   //Populate creeps
+  map.addCreep("basicCreep", 400, 400, 0); // Add creep at (400, 400) with 100 ms of delay
+  map.addCreep("basicCreep", 400, 400, 50); // Add creep at (400, 400) with 100 ms of delay
+  map.addCreep("basicCreep", 400, 400, 130); // Add creep at (400, 400) with 100 ms of delay
   map.addCreep("basicCreep", 400, 400, 100); // Add creep at (400, 400) with 100 ms of delay
-  map.addCreep("basicCreep2", 500, 500, 0);
+  map.addCreep("basicCreep2", 400, 400, 150);
+  map.addCreep("basicCreep", 400, 400, 164);
+  map.addCreep("basicCreep", 400, 400, 180);
+  map.addCreep("basicCreep2", 400, 400, 195);
+  map.addCreep("basicCreep2", 400, 400, 210);
+
 
 
   return map;
