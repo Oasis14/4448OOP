@@ -71,7 +71,7 @@ Map map1(){
   map.addPathPoint(900, 550);
   map.addPathPoint(550, 700);
   map.addPathPoint(550, 200);
-  map.addPathPoint(350, 200);
+  map.addPathPoint(300, 180);
   map.addPathPoint(350, 500);
   map.addPathPoint(50, 500);
   map.addPathPoint(50, 50);

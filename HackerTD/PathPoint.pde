@@ -57,15 +57,17 @@ class PathPoint {
 
     
     /** Vertex indices of rectangle
-    * 0 -------- 1
-    * |          |
-    * 2 -------- 3
+    *         y1
+    *    o -------- o
+    * x1 |          | x2
+    *    o -------- o
+    *         y2
     **/
     // Checks x position
     
-    if(this.xPos >= hitbox.get("x1") && this.xPos <= hitbox.get("x2")){
+    if((int) this.xPos >= hitbox.get("x1") && (int) this.xPos <= hitbox.get("x2")){
       // if x position is correct, check Y position
-      if(this.yPos >= hitbox.get("y1") && this.yPos <= hitbox.get("y2")){
+      if((int) this.yPos >= hitbox.get("y1") && (int) this.yPos <= hitbox.get("y2")){
           return true;
       }
     }

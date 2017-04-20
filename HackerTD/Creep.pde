@@ -16,7 +16,7 @@ class Creep implements Cloneable {
      println(xIn);
       this.xPos = xIn;
       this.yPos = yIn;
-      this.speed = 5;
+      this.speed = 3;
       this.sprite = loadImage(imageIn);
       
       this.hitbox = new FloatDict();
@@ -40,7 +40,7 @@ class Creep implements Cloneable {
      }
  }
  
-  float distToPoint = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
+  float slopeGrade = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
   
   /** 
   * Use trig to get y += cos(theta) * speed
@@ -53,7 +53,7 @@ class Creep implements Cloneable {
   }else{
     yMult = -1;
   }
-  float yFactor = yMult / ( sqrt(pow(distToPoint,2) + 1));
+  float yFactor = yMult / ( sqrt(pow(slopeGrade, 2) + 1));
   float yTranslation = yFactor * this.speed;
   this.yPos += yTranslation;
   this.hitbox.set("y1", this.hitbox.get("y1") + yTranslation);
@@ -66,12 +66,19 @@ class Creep implements Cloneable {
   }else{
     xMult = -1;
   }
-  float xFactor = xMult * distToPoint / ( sqrt(pow(distToPoint,2) + 1));
+  float xFactor = xMult * abs(slopeGrade) / ( sqrt(pow(slopeGrade, 2) + 1));
   float xTranslation = xFactor * this.speed;
   this.xPos += xTranslation;
   this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
   this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
   
+  text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
+  text("Angle: " + atan(slopeGrade), 10, 720);
+  text("Creep X1: " + (int) hitbox.get("x1") + " Creep X2: " + (int) hitbox.get("x2"), 10, 740);
+  text("Creep Y1: " + (int) hitbox.get("y1") + " Creep Y2: " + (int) hitbox.get("y2"), 10, 760);
+  text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
+
+
  }
  
  
