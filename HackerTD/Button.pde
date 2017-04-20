@@ -3,21 +3,27 @@
  * I only needed square buttons for this project so I just used the square button class
  *
  */
- 
+boolean locked = false;
+
 class Button{
   int x, y, size;
   color basecolor, highlightcolor, currentcolor;
   boolean over = false;
   boolean pressed = false;
+  PImage img;
+  
+
   
 //Constuctor for the square button
-  Button(int ix, int iy, int isize, color icolor, color ihighlight){
+  Button(int ix, int iy, int isize, color icolor, color ihighlight, String imgLocation){
     x = ix;
     y = iy;
     size = isize;
     basecolor = icolor;
     highlightcolor = ihighlight;
     currentcolor = basecolor;
+    img = loadImage(imgLocation);
+    
     
   }
   
@@ -40,7 +46,17 @@ class Button{
          return false; 
         }
   }
-  
+ //checked if button is pressed
+  boolean pressed(){
+    if(over){
+     locked = true;
+     return true;
+    } else {
+      locked = false;
+      return false;
+    }
+     
+   }
   // Update checks to see if there was any changes 
   void update(){
     if(over()){
@@ -49,12 +65,18 @@ class Button{
       currentcolor = basecolor;
     }
   }
-  
+  void draw(){
+    
+  }
   //display the button   
   void display(){
+    //beginShape();
     stroke(255);
     fill(currentcolor);
+    texture(img);
     rect(x,y,size,size);
+    //endShape();
+    image(img,x,y, size, size);
   }
    
  }
