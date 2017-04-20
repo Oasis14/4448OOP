@@ -9,12 +9,14 @@ class Tower implements Cloneable {
    private int fireRate;
    private int range;
    
-   Tower (String nameIn, String imageIn, int fireRate, int range) {
+   Tower (String nameIn, String imageIn, int fireRate, int range, Projectile projectile) {
      this.name = nameIn;
      this.sprite = loadImage(imageIn);
      
      this.fireRate = fireRate;
      this.range=range;
+     
+     this.projectile = projectile;
    }
    
    /**
@@ -55,6 +57,9 @@ class Tower implements Cloneable {
    public void shoot () {
      ArrayList<Creep> currentCreepList = currentMap.getCreepList();
      
+     int centerX = this.xPos + this.sprite.width/2;
+     int centerY = this.yPos + this.sprite.height/2;
+     
      /// Determine which creep is closest
      Creep closestCreep = null;
      float oldDistance = 9999;
@@ -62,8 +67,8 @@ class Tower implements Cloneable {
      FloatDict creepPosition;
      for (Creep creep : currentCreepList) {
        creepPosition = creep.getPos();
-       newDistance = dist(this.xPos, this.yPos, creepPosition.get("x"), creepPosition.get("y"));
-       if (newDistance < oldDistance && newDistance <= this.range){
+       newDistance = dist(centerX, centerY, creepPosition.get("x"), creepPosition.get("y"));
+       if (newDistance < oldDistance && newDistance <= this.range && creep.getActive()){
          text("New Target Acquired " + closestCreep, 900, 50);
          closestCreep = creep;
          oldDistance = newDistance;
@@ -73,8 +78,16 @@ class Tower implements Cloneable {
      // Spawn Projectile and shoot that target
      if (closestCreep != null)
      {
-       currentMap.addProjectile("bullet", this.xPos, this.yPos, closestCreep);
+
+       currentMap.addProjectile(this.projectile, centerX, centerY, closestCreep);
      }
+   }
+   
+   public int getWidth(){
+     return this.sprite.width;
+   }
+   public int getHeight(){
+     return this.sprite.height;
    }
    
    public void upgrade () {

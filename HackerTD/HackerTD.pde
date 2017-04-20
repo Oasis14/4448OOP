@@ -53,7 +53,12 @@ void draw() {
 
 void mouseLogging(int time) {
     if (mouse.currentEvent == "click") {
+      if (mouseButton == LEFT){
       currentMap.addTower("basicTower", mouseX, mouseY); // This is Testing code
+      }
+      else if (mouseButton == RIGHT){
+      currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
+      }
       LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
       logger.add_line(l);
 

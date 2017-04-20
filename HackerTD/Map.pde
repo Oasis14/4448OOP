@@ -23,12 +23,16 @@ class Map {
     
 
     // Populate prototypes
-    this.protoTowers.put("basicTower", new Tower("testTower", "testImage.png", 50, 150)); // Tower Type, image, fire rate, range
     
     this.protoCreeps.put("basicCreep", new Creep("basicCreep.png"));
     this.protoCreeps.put("basicCreep2", new Creep("basicCreep2.png"));
     
     this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 500, 7));
+    this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 500, 7));
+    
+    this.protoTowers.put("basicTower", new Tower("testTower", "testImage.png", 50, 150, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
+    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower.png", 30, 250, this.protoProjectiles.get("laser"))); // Tower Type, image, fire rate, range
+
   }
   
   /**
@@ -38,7 +42,8 @@ class Map {
  * @param int y position to spawn it at
  **/
   public void addTower(String towerKey, int x, int y){
-    towerList.add( (Tower) protoTowers.get(towerKey).placeTower(x,y)) ;
+    Tower towerToAdd = (Tower) protoTowers.get(towerKey);
+    towerList.add((Tower) towerToAdd.placeTower(x,y - (towerToAdd.getHeight() / 4))) ;
   }
   
   /**
@@ -99,8 +104,8 @@ class Map {
   * @param int y position to spawn at
   * @param Creep target what it's shooting at
   **/
-  public void addProjectile(String projectileKey, int x, int y, Creep target){
-    projectileList.add( (Projectile) protoProjectiles.get(projectileKey).shootProjectile(x,y, target)) ;
+  public void addProjectile(Projectile projectileProto, int x, int y, Creep target){
+    projectileList.add( (Projectile) projectileProto.shootProjectile(x,y, target)) ;
   }
   
   
