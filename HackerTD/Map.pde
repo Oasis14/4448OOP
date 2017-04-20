@@ -42,8 +42,8 @@ class Map {
     }
   }
   
-  public void addCreep(String creepKey, int x, int y){
-    creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(x,y, this.startPoint)) ;
+  public void addCreep(String creepKey, int x, int y, int delay){
+    creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(x,y, this.startPoint, delay)) ;
   }
   
   public void addPathPoint(int x, int y){

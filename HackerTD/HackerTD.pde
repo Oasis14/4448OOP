@@ -17,7 +17,6 @@ void setup() {
   mouse = new Mouse(millis());
   currentMap = map1();
   testMenu = new Menu("testMenu");
-  currentMap.addTower("basicTower", 400, 400);
   testMenu = new GameMenu("testMenu");
 }
 
@@ -81,8 +80,8 @@ Map map1(){
 
   
   //Populate creeps
-  map.addCreep("basicCreep", 400, 400);
-  map.addCreep("basicCreep2", 500, 500);
+  map.addCreep("basicCreep", 400, 400, 100); // Add creep at (400, 400) with 100 ms of delay
+  map.addCreep("basicCreep2", 500, 500, 0);
 
 
   return map;

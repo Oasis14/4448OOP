@@ -39,6 +39,10 @@ class Creep implements Cloneable {
      }
  }
  
+ if(frameCount < this.spawnFrame+this.delay){
+   return;
+ }
+ 
   float slopeGrade = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
   
   /** 
@@ -141,10 +145,22 @@ class Creep implements Cloneable {
   return position;
  }
  
-  protected Object placeCreep(int x, int y, PathPoint startPoint){
+ 
+ /**
+ * PlaceCreep returns a clone of the protoType it is called on
+ * @param int x position for clone to be created at
+ * @param int y position for clone to be created at 
+ * @param PathPoint startPoint the starting point the creep will path to
+ * @param int delay how many milliseconds until movement starts
+ * @return Object clone of creep to later be casted to Creep type
+ **/
+protected Object placeCreep(int x, int y, PathPoint startPoint, int delay){
     this.xPos = x - this.sprite.width / 2;
     this.yPos = y - this.sprite.height / 2;
-   
+    
+    this.spawnFrame = frameCount;
+    this.delay = delay;
+    
     this.hitbox.add("x1", this.xPos);
     this.hitbox.add("x2", this.xPos+this.sprite.width);
     this.hitbox.add("y1", this.yPos);
