@@ -1,8 +1,8 @@
 class GameMenu extends Menu {
   
-  Button pause = new Button(1150,10,20,255,0,"images/pause.png");
-  GameMenu(String n){
-    super(n);
+  Button pause = new Button(1150,10,20,20,255,0,"images/pause.png");
+  GameMenu(){
+    super("GameMenu");
   }
   
   void update(int time) {
@@ -20,9 +20,9 @@ class GameMenu extends Menu {
      //check each button
      if(pause.pressed()){
        //Code here to react when game paused
-        paused=!paused;
-        text("Game Paused", 100, 100);
-     }
+
+       print("Paused pressed \n");
+            }
     }
   }
   

@@ -1,6 +1,8 @@
 class Menu {
   String name;
   
+  //used for any fill  to keep standards the same
+  int fill = 200;
   Menu(String n) {
     name = n;
   }

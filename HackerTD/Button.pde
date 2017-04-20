@@ -6,7 +6,7 @@
 boolean locked = false;
 
 class Button{
-  int x, y, size;
+  int x, y, sizeX, sizeY;
   color basecolor, highlightcolor, currentcolor;
   boolean over = false;
   boolean pressed = false;
@@ -15,21 +15,24 @@ class Button{
 
   
 //Constuctor for the square button
-  Button(int ix, int iy, int isize, color icolor, color ihighlight, String imgLocation){
+  Button(int ix, int iy, int ixsize, int iysize, color icolor, color ihighlight, String imgLocation){
     x = ix;
     y = iy;
-    size = isize;
+    sizeX = ixsize;
+    sizeY = iysize;
     basecolor = icolor;
     highlightcolor = ihighlight;
     currentcolor = basecolor;
-    img = loadImage(imgLocation);
+    if(imgLocation != ""){
+      img = loadImage(imgLocation);
+    }
     
     
   }
   
 //Detrmines if the cursor is over the button or not
   boolean over(){
-   if(overRect(x,y,size,size)){
+   if(overRect(x,y,sizeX,sizeY)){
      over = true; 
      return true;
    } else {
@@ -65,18 +68,18 @@ class Button{
       currentcolor = basecolor;
     }
   }
-  void draw(){
-    
-  }
+
   //display the button   
   void display(){
     //beginShape();
     stroke(255);
     fill(currentcolor);
-    texture(img);
-    rect(x,y,size,size);
+    //texture(img);
+    rect(x,y,sizeX,sizeY);
     //endShape();
-    image(img,x,y, size, size);
+    if(img != null){
+      image(img,x,y, sizeX, sizeY);
+    }
   }
    
  }

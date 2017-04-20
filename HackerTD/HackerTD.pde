@@ -2,7 +2,7 @@ Log logger;
 int background = 0;
 Mouse mouse;
 Map currentMap;
-Menu testMenu;
+Menu menu;
 Player player;
 Boolean paused;
 
@@ -16,9 +16,9 @@ void setup() {
   logger = new Log();
   mouse = new Mouse(millis());
   currentMap = map1();
-  testMenu = new Menu("testMenu");
-  testMenu = new GameMenu("testMenu");
   paused=false;
+  menu = new GameMenu();
+
 }
 
 void draw() {
@@ -26,17 +26,21 @@ void draw() {
   mouse.update(time, mousePressed);
   mouseLogging(time);
   
-  testMenu.update(time);
-  if (testMenu.name == "gameMenu" && paused == false) {
+  menu.update(time);
+  if (menu.name == "gameMenu" && paused == false) {
+
     currentMap.update(time);
-  }
+  } 
   
   
   currentMap.display();
   fill(255);
+  textSize(15);
   text(str(time), width-100, 10);
-  testMenu.display();
-  
+
+  menu.display();
+  //menu.update(time);
+
   
   logger.update(time);
   logger.display(time);
