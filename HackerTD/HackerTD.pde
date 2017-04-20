@@ -14,7 +14,7 @@ void setup() {
   mouse = new Mouse(millis());
   testMap = new Map(100, 100);
   testMap.addTower("basicTower", 400, 400);
-  testMenu = new Menu("testMenu");
+  testMenu = new GameMenu("testMenu");
 }
 
 void draw() {
