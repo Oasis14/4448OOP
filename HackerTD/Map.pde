@@ -24,7 +24,8 @@ class Map {
     // Populate prototypes
     this.protoTowers.put("basicTower", new Tower(0,0,  "testTower", "testImage.png"));
     
-    this.protoCreeps.put("basicCreep", new Creep(0, 0, "basicCreep.png"));
+    this.protoCreeps.put("basicCreep", new Creep("basicCreep.png"));
+    this.protoCreeps.put("basicCreep2", new Creep("basicCreep2.png"));
   }
   
   public void addTower(String towerKey, int x, int y){

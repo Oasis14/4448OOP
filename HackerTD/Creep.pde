@@ -8,17 +8,16 @@ class Creep implements Cloneable {
   private int speed;
   private int hp;
   private FloatDict hitbox;
+  private int spawnFrame;
+  private int delay;
+  
   
   public int ID;
   
   
-   Creep (int xIn, int yIn, String imageIn) {
-     println(xIn);
-      this.xPos = xIn;
-      this.yPos = yIn;
+   Creep (String imageIn) {
       this.speed = 3;
       this.sprite = loadImage(imageIn);
-      
       this.hitbox = new FloatDict();
 
    }
@@ -152,6 +151,7 @@ class Creep implements Cloneable {
     this.hitbox.add("y2", this.yPos+this.sprite.height);
    
    this.pathPoint = startPoint;
+   
    try{
      return this.clone();
    }

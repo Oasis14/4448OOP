@@ -80,6 +80,8 @@ Map map1(){
   
   //Populate creeps
   map.addCreep("basicCreep", 400, 400);
+  map.addCreep("basicCreep2", 500, 500);
+
 
   return map;
 }
