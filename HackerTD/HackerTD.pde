@@ -27,8 +27,11 @@ void draw() {
   
   menu.update(time);
   if (menu.name == "gameMenu") {
+    menu = new GameMenu();
     currentMap.update(time);
-  } 
+  } else if(menu.name == "pausedMenu"){
+   menu = new MainMenu(); 
+  }
   
   
   currentMap.display();

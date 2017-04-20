@@ -36,7 +36,8 @@ class MainMenu extends Menu{
      //check each button
      if(newGame.pressed()){
        //Code here to react when game paused
-       print("Paused pressed \n");
+       print("Play Pressed\n");
+       super.name = "gameMenu";
        
      }
     }

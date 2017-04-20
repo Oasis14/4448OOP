@@ -40,7 +40,8 @@ class Button{
      return false;
    }
   }
-  // Check to make sure the cursor is over the box
+  
+// Check to make sure the cursor is over the box
   boolean overRect(int x, int y, int width, int height){
     if(mouseX >= x && mouseX <= x+width &&
         mouseY >= y && mouseY <= y+height){
@@ -49,7 +50,8 @@ class Button{
          return false; 
         }
   }
- //checked if button is pressed
+  
+//checked if button is pressed
   boolean pressed(){
     if(over){
      locked = true;
