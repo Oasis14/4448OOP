@@ -19,13 +19,16 @@ class Map {
     this.pathPoints = new ArrayList<PathPoint>();
     this.creepList = new ArrayList<Creep>();
     this.towerList = new ArrayList<Tower>();
+    this.projectileList = new ArrayList<Projectile>();
     
 
     // Populate prototypes
-    this.protoTowers.put("basicTower", new Tower(0,0,  "testTower", "testImage.png"));
+    this.protoTowers.put("basicTower", new Tower("testTower", "testImage.png", 50, 150)); // Tower Type, image, fire rate, range
     
     this.protoCreeps.put("basicCreep", new Creep("basicCreep.png"));
     this.protoCreeps.put("basicCreep2", new Creep("basicCreep2.png"));
+    
+    this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 500, 7));
   }
   
   /**
@@ -64,6 +67,14 @@ class Map {
   }
   
   /**
+  * Return creepList
+  * @return ArraList<Creep>
+  **/
+  public ArrayList<Creep> getCreepList(){
+    return this.creepList;
+  }
+  
+  /**
   * Add a path point to the map at given location and link it to any previously placed PathPoints
   * @param int x position for path point to spawn
   * @param int y position for path point to spawn
@@ -80,6 +91,18 @@ class Map {
     pathPoints.add(newPoint);
     this.startPoint = newPoint;
   }
+  
+    /**
+  * Add a projectile to the map with a target
+  * @param String projectileKey Key of projectile to be cloned from proto list
+  * @param int x position to spawn at
+  * @param int y position to spawn at
+  * @param Creep target what it's shooting at
+  **/
+  public void addProjectile(String projectileKey, int x, int y, Creep target){
+    projectileList.add( (Projectile) protoProjectiles.get(projectileKey).shootProjectile(x,y, target)) ;
+  }
+  
   
   void update(int time) {
     
@@ -104,7 +127,13 @@ class Map {
     }
     
     for (Tower tower : towerList) {
+      tower.update();
       tower.display();
+    }
+
+    for (Projectile projectile : projectileList) {
+      projectile.update();
+      projectile.display();
     }
 
   }

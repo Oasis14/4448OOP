@@ -153,7 +153,7 @@ class Creep implements Cloneable {
  * @param int delay how many milliseconds until movement starts
  * @return Object clone of creep to later be casted to Creep type
  **/
-protected Object placeCreep(int x, int y, PathPoint startPoint, int delay){
+ protected Object placeCreep(int x, int y, PathPoint startPoint, int delay){
     this.xPos = x - this.sprite.width / 2;
     this.yPos = y - this.sprite.height / 2;
     
@@ -168,19 +168,17 @@ protected Object placeCreep(int x, int y, PathPoint startPoint, int delay){
     this.hitbox.add("x2", this.xPos+this.sprite.width);
     this.hitbox.add("y1", this.yPos);
     this.hitbox.add("y2", this.yPos+this.sprite.height);
-
-     println(this.hitbox);
-     this.pathPoint = startPoint;
-     
-     try{
-       return this.clone();
-     }
-     catch(CloneNotSupportedException e)
-     {
-       return null;
-     }
-     }
-     
+    this.pathPoint = startPoint;
+    
+    try{
+      return this.clone();
+    }
+    catch(CloneNotSupportedException e)
+    {
+      return null;
+    }
+ }
+    
     protected Object clone() throws CloneNotSupportedException
     {
         return super.clone();
