@@ -31,6 +31,7 @@ class Log {
       LogLine l = logLines.get(i);
       textColor = 55 + 200 * (1 - ((time - l.timeCreated)/float(l.duration)));
       fill(textColor);
+      textSize(14);
       text(l.text, 0, ypos);
       ypos += 10;
     }

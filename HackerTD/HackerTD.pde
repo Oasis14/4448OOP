@@ -14,7 +14,7 @@ void setup() {
   mouse = new Mouse(millis());
   testMap = new Map(100, 100);
   testMap.addTower("basicTower", 400, 400);
-  testMenu = new GameMenu("testMenu");
+  testMenu = new MainMenu();
 }
 
 void draw() {
@@ -23,13 +23,14 @@ void draw() {
   mouseLogging(time);
   
   testMenu.update(time);
-  if (testMenu.name == "gameMenu") {
+  if (testMenu.name == "MainMenu") {
     testMap.update(time);
   }
   
   
   testMap.display();
   fill(255);
+  textSize(15);
   text(str(time), width-100, 10);
   testMenu.display();
   
