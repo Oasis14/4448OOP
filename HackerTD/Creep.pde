@@ -25,10 +25,9 @@ class Creep implements Cloneable {
  **/
  public void path(){
    if(this.pathPoint.collide(this.hitbox)){
-     println("collide");
      //If we hit the base
      if(this.pathPoint.isBase()){
-        //GetGlobalMap().takeAwayLife();
+         currentMap.takeDamage(5); // subtract 5 hp
         this.die();
      }
      else{
@@ -87,7 +86,6 @@ class Creep implements Cloneable {
  public void die(){
    player.addMoney(this.bounty);
    creepsToRemove.add(this);
-   currentMap.takeDamage(5); // subtract 1 hp
    // How will this work? This needs to access Map to remove a creep from CreepList
    // Maybe a public method on map?
  }
