@@ -73,6 +73,7 @@ class Map {
     creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(x,y, this.startPoint, delay)) ;
   }
   
+
   /**
   * Return creepList
   * @return ArraList<Creep>
@@ -115,7 +116,11 @@ class Map {
   * @param projectile the projectile to remove from the arrayList
   **/
   public void removeProjectile(Projectile projectile){
-    this.projectileList.remove(projectile);
+    projectilesToRemove.add(projectile);
+  }
+  
+  public void takeDamage(int damage){
+    this.baseHealth -= damage;
   }
   
   void update(int time) {
@@ -156,6 +161,6 @@ class Map {
     projectileList.removeAll(projectilesToRemove);
     creepList.removeAll(creepsToRemove);
 
-
+    text("Base Health : " + this.baseHealth, 900, 50);
   }
 }

@@ -15,7 +15,7 @@ class PathPoint {
     // The only PathPoint without a nextPath is the base
     if (nextPath == null){
       isBase = true;
-      this.sprite = loadImage("castle.png");
+      this.sprite = loadImage("pathPoint.png");
 
     }
     else{
@@ -65,9 +65,9 @@ class PathPoint {
     **/
     // Checks x position
     
-    if((int) this.xPos >= hitbox.get("x1") && (int) this.xPos <= hitbox.get("x2")){
+    if((int) this.getCenterX() >= hitbox.get("x1") && (int) this.getCenterX() <= hitbox.get("x2")){
       // if x position is correct, check Y position
-      if((int) this.yPos >= hitbox.get("y1") && (int) this.yPos <= hitbox.get("y2")){
+      if((int) this.getCenterY() >= hitbox.get("y1") && (int) this.getCenterY() <= hitbox.get("y2")){
           return true;
       }
     }
@@ -80,6 +80,14 @@ class PathPoint {
   
   public float getY(){
     return this.yPos;
+  }
+  
+    public float getCenterX(){
+    return this.xPos + this.sprite.width/2;
+  }
+  
+  public float getCenterY(){
+    return this.yPos + this.sprite.height/2;
   }
   
   public Boolean isBase(){

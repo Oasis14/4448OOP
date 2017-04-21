@@ -10,6 +10,7 @@ class Creep implements Cloneable {
   private int spawnFrame, delay;
   public int ID;
   
+  
   Creep (String imageIn, int health) {
       this.speed = 3;
       this.hp = health;
@@ -24,6 +25,7 @@ class Creep implements Cloneable {
  **/
  public void path(){
    if(this.pathPoint.collide(this.hitbox)){
+     println("collide");
      //If we hit the base
      if(this.pathPoint.isBase()){
         //GetGlobalMap().takeAwayLife();
@@ -35,7 +37,7 @@ class Creep implements Cloneable {
    }
    
    
-    float slopeGrade = (this.pathPoint.getX() - this.xPos) / ( this.pathPoint.getY() - this.yPos);
+    float slopeGrade = (this.pathPoint.getCenterX() - this.xPos) / ( this.pathPoint.getCenterY() - this.yPos);
     
     /** 
     * Use trig to get y += cos(theta) * speed
@@ -43,7 +45,7 @@ class Creep implements Cloneable {
     * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
     **/
     int yMult;
-    if(this.pathPoint.getY() - this.yPos >= 0){
+    if(this.pathPoint.getCenterY() - this.yPos >= 0){
       yMult = 1;
     }else{
       yMult = -1;
@@ -56,7 +58,7 @@ class Creep implements Cloneable {
      
     // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
     int xMult;
-    if(this.pathPoint.getX() - this.xPos >= 0){
+    if(this.pathPoint.getCenterX() - this.xPos >= 0){
       xMult = 1;
     }else{
       xMult = -1;
@@ -67,13 +69,13 @@ class Creep implements Cloneable {
     this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
     this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
     
-    /*
+   /**   
     text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
     text("Angle: " + atan(slopeGrade), 10, 720);
     text("Creep X1: " + (int) hitbox.get("x1") + " Creep X2: " + (int) hitbox.get("x2"), 10, 740);
     text("Creep Y1: " + (int) hitbox.get("y1") + " Creep Y2: " + (int) hitbox.get("y2"), 10, 760);
     text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
-    */
+    **/    
 
  }
  
@@ -84,6 +86,8 @@ class Creep implements Cloneable {
  **/
  public void die(){
    player.addMoney(this.bounty);
+   creepsToRemove.add(this);
+   currentMap.takeDamage(5); // subtract 1 hp
    // How will this work? This needs to access Map to remove a creep from CreepList
    // Maybe a public method on map?
  }
@@ -91,16 +95,15 @@ class Creep implements Cloneable {
  
    public Boolean collide(Projectile projectile){    
     /** Vertex indices of rectangle
-    *         y1
-    *    o -------- o
-    * x1 |          | x2
-    *    o -------- o
-    *         y2
+    *         y
+    *   o -------- o
+    * x |          | x + sprite.height
+    *   o -------- o
+    *         y + sprite.height
     **/
     // Checks x position
     
-    if( this.xPos + this.sprite.width >= projectile.getX()  &&  this.xPos <= projectile.getX()){ // TODO :FIX THIS SHIT CODE
-      // if x position is correct, check Y position
+    if( this.xPos + this.sprite.width >= projectile.getX()  &&  this.xPos <= projectile.getX()){
       if(this.yPos + this.sprite.height >= projectile.getY() &&  this.yPos <= projectile.getY()){
          return true;
       }

@@ -26,7 +26,7 @@ class Projectile implements Cloneable {
       if(this.target.collide(this)){
        //If we hit the enemy
        this.target.takeDmg(this.dmg);
-       projectilesToRemove.add(this);
+       currentMap.removeProjectile(this);
        }
      else{
       this.updatePos();
