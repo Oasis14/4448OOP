@@ -67,12 +67,13 @@ class Creep implements Cloneable {
     this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
     this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
     
+    /*
     text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
     text("Angle: " + atan(slopeGrade), 10, 720);
     text("Creep X1: " + (int) hitbox.get("x1") + " Creep X2: " + (int) hitbox.get("x2"), 10, 740);
     text("Creep Y1: " + (int) hitbox.get("y1") + " Creep Y2: " + (int) hitbox.get("y2"), 10, 760);
     text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
-
+    */
 
  }
  
@@ -100,7 +101,6 @@ class Creep implements Cloneable {
     
     if( this.xPos + this.sprite.width >= projectile.getX()  &&  this.xPos <= projectile.getX()){ // TODO :FIX THIS SHIT CODE
       // if x position is correct, check Y position
-      println("yPos: " + this.yPos + "  yProj " + projectile.getY());
       if(this.yPos + this.sprite.height >= projectile.getY() &&  this.yPos <= projectile.getY()){
          return true;
       }
@@ -139,8 +139,8 @@ class Creep implements Cloneable {
    // Display health bar
    noStroke();
    rectMode(CORNER);
-   fill( 255, 100-this.hp , 100-this.hp );
-   rect(this.xPos,this.yPos-10, this.hp, 5); 
+   fill( 255, 100-this.hp , 100-this.hp * 0.5 );
+   rect(this.xPos,this.yPos-10, this.hp * 0.5, 5); 
  }
  /**
  * Public function so that external classes can determine if this has died

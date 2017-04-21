@@ -50,7 +50,7 @@ void draw() {
   menu.display();
   //menu.update(time);
 
-  
+  text(frameRate,30,30);
   logger.update(time);
   logger.display(time);
 }
@@ -62,6 +62,9 @@ void mouseLogging(int time) {
       }
       else if (mouseButton == RIGHT){
       currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
+      }
+      else if (mouseButton == CENTER){
+      currentMap.addTower("arrowTower", mouseX, mouseY); // This is Testing code
       }
       LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
       logger.add_line(l);

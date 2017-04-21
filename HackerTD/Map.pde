@@ -30,8 +30,10 @@ class Map {
     this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 30, 7));
     this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 30, 7));
     
-    this.protoTowers.put("basicTower", new Tower("testTower", "testImage.png", 50, 150, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
-    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower.png", 30, 250, this.protoProjectiles.get("laser"))); // Tower Type, image, fire rate, range
+    this.protoTowers.put("basicTower", new Tower("testTower", "images/basicTower.png", 50, 150, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
+    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower2.png", 30, 250, this.protoProjectiles.get("laser"))); // Tower Type, image, fire rate, range
+    this.protoTowers.put("arrowTower", new Tower("advancedTower", "images/arrowTower.png", 10, 250, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
+
 
   }
   
@@ -126,7 +128,7 @@ class Map {
   **/
   void display () {
     background(background);
-
+    
     projectilesToRemove = new ArrayList();
     creepsToRemove = new ArrayList();
     
