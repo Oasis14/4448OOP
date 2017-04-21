@@ -25,11 +25,9 @@ class Projectile implements Cloneable {
    public void update(){
       if(this.target.collide(this)){
        //If we hit the enemy
-       //creep.takeAwayLife();
+       this.target.takeDmg(this.dmg);
        projectilesToRemove.add(this);
-       creepsToRemove.add(this.target);
-       println("HIT");
-     }
+       }
      else{
       this.updatePos();
      }

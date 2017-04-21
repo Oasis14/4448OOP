@@ -24,11 +24,11 @@ class Map {
 
     // Populate prototypes
     
-    this.protoCreeps.put("basicCreep", new Creep("basicCreep.png"));
-    this.protoCreeps.put("basicCreep2", new Creep("basicCreep2.png"));
+    this.protoCreeps.put("basicCreep", new Creep("basicCreep.png", 50));
+    this.protoCreeps.put("basicCreep2", new Creep("basicCreep2.png", 100));
     
-    this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 500, 7));
-    this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 500, 7));
+    this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 30, 7));
+    this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 30, 7));
     
     this.protoTowers.put("basicTower", new Tower("testTower", "testImage.png", 50, 150, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
     this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower.png", 30, 250, this.protoProjectiles.get("laser"))); // Tower Type, image, fire rate, range

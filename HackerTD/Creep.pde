@@ -10,8 +10,9 @@ class Creep implements Cloneable {
   private int spawnFrame, delay;
   public int ID;
   
-  Creep (String imageIn) {
+  Creep (String imageIn, int health) {
       this.speed = 3;
+      this.hp = health;
       this.sprite = loadImage(imageIn);
 
    }
@@ -86,6 +87,7 @@ class Creep implements Cloneable {
    // Maybe a public method on map?
  }
  
+ 
    public Boolean collide(Projectile projectile){    
     /** Vertex indices of rectangle
     *         y1
@@ -96,11 +98,10 @@ class Creep implements Cloneable {
     **/
     // Checks x position
     
-    if( this.xPos >= projectile.getX()  &&  this.xPos <= projectile.getX() + 80){ // TODO :FIX THIS SHIT CODE
+    if( this.xPos + this.sprite.width >= projectile.getX()  &&  this.xPos <= projectile.getX()){ // TODO :FIX THIS SHIT CODE
       // if x position is correct, check Y position
       println("yPos: " + this.yPos + "  yProj " + projectile.getY());
-      if(this.yPos >= projectile.getY() - 40 &&  this.yPos <= projectile.getY() + 30){
-         print("YES");
+      if(this.yPos + this.sprite.height >= projectile.getY() &&  this.yPos <= projectile.getY()){
          return true;
       }
     }
@@ -123,6 +124,7 @@ class Creep implements Cloneable {
     this.hp -= health;
     if (this.hp <= 0){
       die();
+      creepsToRemove.add(this);
       // GetGlobalMap.addMoney( this.bounty )
     }
  }
@@ -131,7 +133,14 @@ class Creep implements Cloneable {
  * The function which when run will display the creep on screen
  **/
  public void display(){
+   // Display Sprite
    image(this.sprite, this.xPos, this.yPos);
+   
+   // Display health bar
+   noStroke();
+   rectMode(CORNER);
+   fill( 255, 100-this.hp , 100-this.hp );
+   rect(this.xPos,this.yPos-10, this.hp, 5); 
  }
  /**
  * Public function so that external classes can determine if this has died
