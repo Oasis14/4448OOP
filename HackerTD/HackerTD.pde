@@ -40,12 +40,13 @@ void draw() {
   if (menu.name == "gameMenu") {
     menu = new GameMenu();
     currentMap.update(time);
+    currentMap.display();
   } else if(menu.name == "pausedMenu"){
    menu = new MainMenu(); 
   }
   
   
-  currentMap.display();
+  
   fill(255);
   textSize(15);
   text(str(time), width-100, 10);
