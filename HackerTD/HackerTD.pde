@@ -43,6 +43,9 @@ void draw() {
     currentMap.display();
   } else if(menu.name == "pausedMenu"){
    menu = new MainMenu(); 
+  } else if(menu.name == "newGame"){
+   menu.name = "gameMenu"; 
+   currentMap = map1();
   }
   
   

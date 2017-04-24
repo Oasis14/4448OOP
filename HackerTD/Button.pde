@@ -11,11 +11,12 @@ class Button{
   boolean over = false;
   boolean pressed = false;
   PImage img;
+  String label;
   
 
   
 //Constuctor for the square button
-  Button(int ix, int iy, int ixsize, int iysize, color icolor, color ihighlight, String imgLocation){
+  Button(int ix, int iy, int ixsize, int iysize, color icolor, color ihighlight, String imgLocation, String ilabel){
     x = ix;
     y = iy;
     sizeX = ixsize;
@@ -26,6 +27,7 @@ class Button{
     if(imgLocation != ""){
       img = loadImage(imgLocation);
     }
+    label = ilabel;
     
     
   }
@@ -81,6 +83,12 @@ class Button{
     //endShape();
     if(img != null){
       image(img,x,y, sizeX, sizeY);
+    }
+    
+    if(label.length() >= 1){
+      textSize(32);
+      fill(highlightcolor);
+      text(label, x + 20, y + 30); 
     }
   }
    

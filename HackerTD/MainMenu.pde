@@ -1,6 +1,6 @@
 class MainMenu extends Menu{
   
- Button newGame = new Button(475,300,250, 35,255,0,"");
+ Button newGame = new Button(475,300,250, 35,255,0,"","New Game");
    
  MainMenu(){
   super("MainMenu"); 
@@ -37,7 +37,7 @@ class MainMenu extends Menu{
      if(newGame.pressed()){
        //Code here to react when game paused
        paused = false;
-       super.name = "gameMenu";
+       super.name = "newGame";
        
      }
     }
