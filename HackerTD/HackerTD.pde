@@ -37,13 +37,12 @@ void draw() {
   
   //Removed this line as I was dealing with menu changes differently
   //if (menu.name == "gameMenu" && paused == false) {
-  if (menu.name == "gameMenu") {
+  if (menu.name == "GameMenu" && paused == false) {
+      currentMap.update(time);
     menu = new GameMenu();
-    currentMap.update(time);
   } else if(menu.name == "pausedMenu"){
    menu = new MainMenu(); 
   }
-  
   
   currentMap.display();
   fill(255);
@@ -127,6 +126,7 @@ Map map1(){
   map.addCreep("basicCreep", 400, 400, 180);
   map.addCreep("basicCreep2", 400, 400, 195);
   map.addCreep("basicCreep2", 400, 400, 210);
+  map.addCreep("basicCreep2", 400, 400, 200);
 
   map.addCreep("basicCreep2", 400, 400, 250);
   map.addCreep("basicCreep", 400, 400, 264);

@@ -124,7 +124,13 @@ class Map {
   }
   
   void update(int time) {
+    if( baseHealth <=0){
+      textSize(300);
+      text("GAME OVER", 800, 600);
+    }
     
+    projectileList.removeAll(projectilesToRemove);
+    creepList.removeAll(creepsToRemove);
   }
   
   /**
@@ -158,8 +164,7 @@ class Map {
       projectile.display();
     }
     
-    projectileList.removeAll(projectilesToRemove);
-    creepList.removeAll(creepsToRemove);
+
 
     text("Base Health : " + this.baseHealth, 900, 50);
   }
