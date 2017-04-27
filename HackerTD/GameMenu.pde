@@ -1,8 +1,8 @@
 class GameMenu extends Menu {
   
-  Button pause = new Button(1150,10,20,20,255,0,"images/pause.png");
+  Button pause = new Button(1150,10,20,20,255,0,"images/pause.png","");
   GameMenu(){
-    super("GameMenu");
+    super("gameMenu");
   }
   
   void update(int time) {

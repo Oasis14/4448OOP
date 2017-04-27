@@ -128,7 +128,6 @@ class Map {
       textSize(300);
       text("GAME OVER", 800, 600);
     }
-    
     projectileList.removeAll(projectilesToRemove);
     creepList.removeAll(creepsToRemove);
   }

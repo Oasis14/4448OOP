@@ -37,14 +37,20 @@ void draw() {
   
   //Removed this line as I was dealing with menu changes differently
   //if (menu.name == "gameMenu" && paused == false) {
-  if (menu.name == "GameMenu" && paused == false) {
-      currentMap.update(time);
+  if (menu.name == "GameMenu") {
     menu = new GameMenu();
+
   } else if(menu.name == "pausedMenu"){
    menu = new MainMenu(); 
+  } else if(menu.name == "newGame"){
+   menu.name = "gameMenu"; 
+   currentMap = map1();
   }
   
+        currentMap.update(time);
+
   currentMap.display();
+
   fill(255);
   textSize(15);
   text(str(time), width-100, 10);
