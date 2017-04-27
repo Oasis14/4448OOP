@@ -9,6 +9,7 @@ class Creep implements Cloneable {
   private FloatDict hitbox;
   private int spawnFrame, delay;
   public int ID;
+  private int totalDelay;
   
   
   Creep (String imageIn, int health) {
@@ -150,12 +151,22 @@ class Creep implements Cloneable {
   return this.hp;
  }
  
+ /** 
+  * This function adds to the delay if game is paused
+  **/
+ public void addDelay(){
+   if(paused){
+    this.totalDelay += 1;
+   }
+ }
+ 
  /**
  * Return whether the creep has spawned yet 
  * @return Boolean
  **/
  public Boolean getActive(){
-   return frameCount >= this.spawnFrame+this.delay;
+     addDelay();
+     return frameCount >= this.totalDelay;
  }
  
  /**
@@ -197,6 +208,7 @@ class Creep implements Cloneable {
     
     this.spawnFrame = frameCount;
     this.delay = delay;
+    this.totalDelay = this.spawnFrame + this.delay;
     
     this.hitbox = new FloatDict(); // clone() makes a shallow copy. Need to instantiate all objects again
     this.hitbox.add("x1", this.xPos);

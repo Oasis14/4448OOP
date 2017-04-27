@@ -40,7 +40,8 @@ void setup() {
 }
 
 void draw() {
-  int time = millis();  
+  int time = millis();
+  println(frameRate);
   mouse.update(time, mousePressed);
   mouseLogging(time);
   
