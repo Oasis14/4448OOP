@@ -1,4 +1,5 @@
 class Map {
+  public  String gameState = "run";
   private ArrayList<PathPoint> pathPoints;
   private ArrayList<Creep> creepList;
   private ArrayList<Tower> towerList;
@@ -121,6 +122,9 @@ class Map {
   
   public void takeDamage(int damage){
     this.baseHealth -= damage;
+    if(this.baseHealth <= 0){
+      
+    }
   }
   
   void update(int time) {

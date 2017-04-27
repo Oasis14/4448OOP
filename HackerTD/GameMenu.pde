@@ -6,8 +6,7 @@ class GameMenu extends Menu {
   }
   
   void update(int time) {
-    /*LogLine l = new LogLine("Menu updated", time, 5000);
-    logger.add_line(l);*/
+    paused = false;
     pause.update();
     if(locked == false){
       //update buttons here
@@ -20,10 +19,8 @@ class GameMenu extends Menu {
      //check each button
      if(pause.pressed()){
        //Code here to react when game paused
-      
-
-       super.name = "pausedMenu";
-       
+       currentMenu = "mainMenu";
+       paused = true;
      }
     }
   }
