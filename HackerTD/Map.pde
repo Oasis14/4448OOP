@@ -180,8 +180,7 @@ class Map {
       projectile.display();
     }
     
-    //projectileList.removeAll(projectilesToRemove);
-    //creepList.removeAll(creepsToRemove);
+
 
     text("Base Health : " + this.baseHealth, 900, 50);
   }

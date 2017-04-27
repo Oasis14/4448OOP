@@ -53,6 +53,7 @@ void draw() {
     reset = false;
   }
   
+
   //checks if you need to update the game state
   if(!paused){
     currentMap.update(time);
@@ -142,6 +143,7 @@ Map map1(){
   map.addCreep("basicCreep", 400, 400, 180);
   map.addCreep("basicCreep2", 400, 400, 195);
   map.addCreep("basicCreep2", 400, 400, 210);
+  map.addCreep("basicCreep2", 400, 400, 200);
 
   map.addCreep("basicCreep2", 400, 400, 250);
   map.addCreep("basicCreep", 400, 400, 264);
