@@ -3,8 +3,10 @@ class MainMenu extends Menu{
  Button newGame = new Button(475,300,250, 35,255,0,"","New Game");
  Button resumeGame = new Button(475,350,250, 35,255,0,"","Resume Game");
  MainMenu(){
-  super("MainMenu"); 
+  super("mainMenu");
+  currentMenu = "mainMenu";
  }
+ 
  
  void display(){
     beginShape();
@@ -39,10 +41,11 @@ class MainMenu extends Menu{
      if(newGame.pressed()){
        //Code here to react when game paused
        paused = false;
-       super.name = "newGame"; 
+       reset = true;
+       currentMenu = "gameMenu"; 
      } else if (resumeGame.pressed()){
       paused = false;
-      super.name = "gameMenu";
+      currentMenu = "gameMenu";
      }
     }
   }

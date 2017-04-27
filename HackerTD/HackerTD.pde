@@ -2,14 +2,18 @@ Log logger;
 int background = 0;
 Mouse mouse;
 Map currentMap;
-Menu menu;
 Player player;
-Boolean paused;
+Boolean paused, reset;
 ArrayList projectilesToRemove;
 ArrayList creepsToRemove;
 
+//used for holding all the menus 
+HashMap<String, Menu> menuList;
+String currentMenu;
+
 
 void setup() {
+  currentMenu = "mainMenu";
   // Setup window and game settings
   size(1200, 800);
   surface.setResizable(true);
@@ -19,13 +23,20 @@ void setup() {
   player = new Player();
   logger = new Log();
   mouse = new Mouse(millis());
-  menu = new GameMenu();
   
   // Initialize Map global objects
   currentMap = map1();
   paused=false;
   projectilesToRemove = new ArrayList();
   creepsToRemove = new ArrayList();
+  
+  menuList = new HashMap<String, Menu>();
+  currentMenu = "mainMenu";
+  menuList.put("gameMenu", new GameMenu());
+  menuList.put("mainMenu", new MainMenu());
+  paused = true;
+  reset = true;
+  
 }
 
 void draw() {
@@ -33,30 +44,29 @@ void draw() {
   mouse.update(time, mousePressed);
   mouseLogging(time);
   
-  menu.update(time);
+  menuList.get(currentMenu).update(time);
   
-  //Removed this line as I was dealing with menu changes differently
-  //if (menu.name == "gameMenu" && paused == false) {
-  if (menu.name == "GameMenu") {
-    menu = new GameMenu();
-
-  } else if(menu.name == "pausedMenu"){
-   menu = new MainMenu(); 
-  } else if(menu.name == "newGame"){
-   menu.name = "gameMenu"; 
-   currentMap = map1();
+  //if we reset the game or creat a new one clear the old map and start over
+  if(reset){
+    currentMap = map1();
+    reset = false;
   }
   
-        currentMap.update(time);
 
-  currentMap.display();
-
+  //checks if you need to update the game state
+  if(!paused){
+    currentMap.update(time);
+    currentMap.display();
+  } else{
+    currentMap.display();
+  }
+  
+  menuList.get(currentMenu).display();
   fill(255);
   textSize(15);
   text(str(time), width-100, 10);
 
-  menu.display();
-  //menu.update(time);
+  
 
   text(frameRate,30,30);
   logger.update(time);
@@ -139,11 +149,12 @@ Map map1(){
   map.addCreep("basicCreep", 400, 400, 280);
   map.addCreep("basicCreep2", 400, 400, 295);
   map.addCreep("basicCreep2", 400, 400, 310);
-    map.addCreep("basicCreep2", 400, 400, 260);
+  map.addCreep("basicCreep2", 400, 400, 260);
   map.addCreep("basicCreep", 400, 400, 274);
   map.addCreep("basicCreep", 400, 400, 280);
   map.addCreep("basicCreep2", 400, 400, 300);
   map.addCreep("basicCreep2", 400, 400, 310);
+  map.addCreep("basicCreep2", 400, 400, 315);
 
 
   return map;

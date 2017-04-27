@@ -1,4 +1,5 @@
 class Map {
+  public  String gameState = "run";
   private ArrayList<PathPoint> pathPoints;
   private ArrayList<Creep> creepList;
   private ArrayList<Tower> towerList;
@@ -121,15 +122,31 @@ class Map {
   
   public void takeDamage(int damage){
     this.baseHealth -= damage;
+    if(this.baseHealth <= 0){
+      
+    }
   }
   
   void update(int time) {
-    if( baseHealth <=0){
-      textSize(300);
-      text("GAME OVER", 800, 600);
+    projectilesToRemove = new ArrayList();
+    creepsToRemove = new ArrayList();
+    
+    for (Creep creep : creepList) {
+      if (creep.getActive()){
+        creep.update();
+      }
     }
+    
+    for (Tower tower : towerList) {
+      tower.update();
+    }
+
+    for (Projectile projectile : projectileList) {
+      projectile.update();
+    } 
     projectileList.removeAll(projectilesToRemove);
     creepList.removeAll(creepsToRemove);
+    
   }
   
   /**
@@ -148,18 +165,18 @@ class Map {
     
     for (Creep creep : creepList) {
       if (creep.getActive()){
-        creep.update();
+        //creep.update();
         creep.display();
       }
     }
     
     for (Tower tower : towerList) {
-      tower.update();
+      //tower.update();
       tower.display();
     }
 
     for (Projectile projectile : projectileList) {
-      projectile.update();
+      //projectile.update();
       projectile.display();
     }
     
