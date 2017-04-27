@@ -128,6 +128,24 @@ class Map {
   }
   
   void update(int time) {
+    projectilesToRemove = new ArrayList();
+    creepsToRemove = new ArrayList();
+    
+    for (Creep creep : creepList) {
+      if (creep.getActive()){
+        creep.update();
+      }
+    }
+    
+    for (Tower tower : towerList) {
+      tower.update();
+    }
+
+    for (Projectile projectile : projectileList) {
+      projectile.update();
+    } 
+    projectileList.removeAll(projectilesToRemove);
+    creepList.removeAll(creepsToRemove);
     
   }
   
@@ -147,23 +165,23 @@ class Map {
     
     for (Creep creep : creepList) {
       if (creep.getActive()){
-        creep.update();
+        //creep.update();
         creep.display();
       }
     }
     
     for (Tower tower : towerList) {
-      tower.update();
+      //tower.update();
       tower.display();
     }
 
     for (Projectile projectile : projectileList) {
-      projectile.update();
+      //projectile.update();
       projectile.display();
     }
     
-    projectileList.removeAll(projectilesToRemove);
-    creepList.removeAll(creepsToRemove);
+    //projectileList.removeAll(projectilesToRemove);
+    //creepList.removeAll(creepsToRemove);
 
     text("Base Health : " + this.baseHealth, 900, 50);
   }

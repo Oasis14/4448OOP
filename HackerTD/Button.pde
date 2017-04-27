@@ -15,7 +15,17 @@ class Button{
   
 
   
-//Constuctor for the square button
+ /**
+ * Button constructor
+ * @param int ix position for button to be created at
+ * @param int iy position for button to be created at 
+ * @param int ixsize size you want the box to be in the x direction
+ * @param int iysize size you want the box to be in the y direction
+ * @param color icolor is the default color
+ * @param color ihighlight is the hover color
+ * @param String imgLocation is the location of an image used in the image
+ * @param String ilabel is the words place on button
+ **/
   Button(int ix, int iy, int ixsize, int iysize, color icolor, color ihighlight, String imgLocation, String ilabel){
     x = ix;
     y = iy;

@@ -56,6 +56,8 @@ void draw() {
   if(!paused){
     currentMap.update(time);
     currentMap.display();
+  } else{
+    currentMap.display();
   }
   
   menuList.get(currentMenu).display();
