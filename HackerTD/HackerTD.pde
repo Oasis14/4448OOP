@@ -26,7 +26,7 @@ void setup() {
   frameRate(30);
 
   // Initialize global objects
-  player = new Player();
+  player = new Player("Bob");
   logger = new Log();
   mouse = new Mouse(millis());
   

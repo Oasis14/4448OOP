@@ -4,6 +4,12 @@ public class Player {
   public int score;
   public Menu menu;
   
+  Player(String newName){
+    name=newName;
+    money=100;
+    score=0;
+  }
+  
   public void updateScore(int score){
     this.score = score;
   }

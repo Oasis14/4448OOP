@@ -4,19 +4,20 @@ class Tower implements Cloneable {
    private String name;
    private Projectile projectile;
    private Tower upgradeTower;
+   public int cost;
    
    private int lastFired;
    private int fireRate;
    private int range;
    
-   Tower (String nameIn, String imageIn, int fireRate, int range, Projectile projectile) {
+   Tower (String nameIn, String imageIn, int fireRate, int range, Projectile projectile, int cost) {
      this.name = nameIn;
      this.sprite = loadImage(imageIn);
      
      this.fireRate = fireRate;
      this.range=range;
-     
      this.projectile = projectile;
+     this.cost = cost;
    }
    
    /**

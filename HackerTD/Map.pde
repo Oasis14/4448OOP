@@ -31,9 +31,9 @@ class Map {
     this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 30, 7));
     this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 30, 7));
     
-    this.protoTowers.put("basicTower", new Tower("testTower", "images/basicTower.png", 50, 150, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
-    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower2.png", 30, 250, this.protoProjectiles.get("laser"))); // Tower Type, image, fire rate, range
-    this.protoTowers.put("arrowTower", new Tower("advancedTower", "images/arrowTower.png", 10, 250, this.protoProjectiles.get("bullet"))); // Tower Type, image, fire rate, range
+    this.protoTowers.put("basicTower", new Tower("testTower", "images/basicTower.png", 50, 150, this.protoProjectiles.get("bullet"), 25)); // Tower Type, image, fire rate, range, cost
+    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower2.png", 30, 250, this.protoProjectiles.get("laser"), 50)); // Tower Type, image, fire rate, range, cost
+    this.protoTowers.put("arrowTower", new Tower("advancedTower", "images/arrowTower.png", 10, 250, this.protoProjectiles.get("bullet"), 70)); // Tower Type, image, fire rate, range, cost
 
 
   }
@@ -46,8 +46,13 @@ class Map {
  **/
   public void addTower(String towerKey, int x, int y){
     Tower towerToAdd = (Tower) protoTowers.get(towerKey);
-    towerList.add((Tower) towerToAdd.placeTower(x,y - (towerToAdd.getHeight() / 4))) ;
-  }
+    if(player.money >= towerToAdd.cost){
+      towerList.add((Tower) towerToAdd.placeTower(x,y - (towerToAdd.getHeight() / 4)));
+      player.removeMoney(towerToAdd.cost);
+    }else{
+      text("You don't have enough money", 600, 400);
+    }  
+}
   
   /**
   * Function to remove a tower from the map if it is destroyed or refunded
@@ -180,7 +185,9 @@ class Map {
       projectile.display();
     }
     
-
+    text(player.name, 900, 30);
     text("Base Health : " + this.baseHealth, 900, 50);
+    text("Money : " + player.money, 900, 70);
+
   }
 }
