@@ -88,7 +88,6 @@ class Creep implements Cloneable {
  **/
  public void die(){
    creepsToRemove.add(this);
-   player.addMoney(this.bounty);
    // How will this work? This needs to access Map to remove a creep from CreepList
    // Maybe a public method on map?
  }
@@ -129,6 +128,7 @@ class Creep implements Cloneable {
     if (this.hp <= 0 && this.state != "dead"){
       die();
       player.addScore( this.bounty );
+      player.addMoney(this.bounty);
       this.state = "dead";
     }
  }
