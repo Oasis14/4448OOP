@@ -48,7 +48,8 @@ class MainMenu extends Menu{
      } else if (resumeGame.pressed()){
       paused = false;
       currentMenu = "gameMenu";
-     }
+     }else if (exitGame.pressed()){
+      exit();
     }
   }
   

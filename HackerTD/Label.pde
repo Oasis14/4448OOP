@@ -29,7 +29,15 @@ class Label{
     basecolor = icolor;
     label = ilabel;
   }
+  
+  void updateLabel(String newLabel){
+    label = newLabel;
+  }
 
+  void updateLabel(char newChar){
+    label = Character.toString(newChar);
+  }
+  
   //display the label   
   void display(){
     if(label.length() >= 1){

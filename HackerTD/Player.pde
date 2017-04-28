@@ -1,6 +1,6 @@
 public class Player {
   public String name;
-  public float money;
+  public int money;
   public int score;
   public Menu menu;
   
@@ -33,6 +33,10 @@ public class Player {
 
   public void removeMoney(int money){
     this.money -= money;
+  }
+  
+  private void updateName(String newName){
+   name = newName; 
   }
   
   /**
