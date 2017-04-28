@@ -76,8 +76,8 @@ class Map {
   * @param int y position to spawn at
   * @param int delay How many milliseconds to delay pathing
   **/
-  public void addCreep(String creepKey, int x, int y, int delay){
-    creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(x,y, this.startPoint, delay)) ;
+  public void addCreep(String creepKey, int delay){
+    creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(this.startPoint.getCenterX(),this.startPoint.getCenterY(), this.startPoint, delay)) ;
   }
   
 
@@ -166,24 +166,21 @@ class Map {
     projectilesToRemove = new ArrayList();
     creepsToRemove = new ArrayList();
     
+    for (Tower tower : towerList) {
+      tower.display();
+    }
+    
     for (PathPoint point : pathPoints) {
       point.display();
     }
     
     for (Creep creep : creepList) {
       if (creep.getActive()){
-        //creep.update();
         creep.display();
       }
     }
-    
-    for (Tower tower : towerList) {
-      //tower.update();
-      tower.display();
-    }
 
     for (Projectile projectile : projectileList) {
-      //projectile.update();
       projectile.display();
     }
     
