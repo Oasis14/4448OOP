@@ -1,6 +1,6 @@
 public class Player {
   public String name;
-  public float money;
+  public int money;
   public int score;
   public Menu menu;
   
