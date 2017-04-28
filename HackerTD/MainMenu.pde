@@ -31,12 +31,12 @@ class MainMenu extends Menu{
     newGame.update();
     resumeGame.update();
     exitGame.update();
-    if(locked == false){
-      //update buttons here
+    //if(locked == false){
+    //  //update buttons here
       
-    }else{
-     locked = false; 
-    }
+    //}else{
+    // locked = false; 
+    //}
     
     if(mousePressed){
      //check each button
