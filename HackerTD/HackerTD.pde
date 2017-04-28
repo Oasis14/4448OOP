@@ -52,7 +52,6 @@ void draw() {
   mouse.update(time, mousePressed);
   mouseLogging(time);
   
-  menuList.get(currentMenu).update(time);
   
   //if we reset the game or creat a new one clear the old map and start over
   if(reset){
@@ -65,7 +64,7 @@ void draw() {
   if(!paused){
     if(placeTower){
      if(mousePressed){
-        if(mouseButton == RIGHT){
+        if(mouseButton == LEFT){
           currentMap.addTower(towerName, mouseX, mouseY);
           placeTower = false;
         }
@@ -76,6 +75,9 @@ void draw() {
   } else{
     currentMap.display();
   }
+  
+    menuList.get(currentMenu).update(time);
+
   
   menuList.get(currentMenu).display();
   fill(255);

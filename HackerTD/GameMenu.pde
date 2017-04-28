@@ -4,6 +4,7 @@ class GameMenu extends Menu {
   Button basicTower1 = new Button(5, 745, 50, 50, 255,0, "images/basicTower.png", "");
   Button advancedTower = new Button(65, 745,50,50,255,0,"images/advancedTower2.png","");
   Button arrowTower = new Button(125, 745,50,50,255,0,"images/arrowTower.png","");
+  
   GameMenu(){
     super("gameMenu");
   }
@@ -24,7 +25,7 @@ class GameMenu extends Menu {
     // locked = false; 
     //}
     
-    if(mousePressed){
+    if(mouse.currentEvent == "click"){
      //check each button
      if(pause.pressed()){
        //Code here to react when game paused
