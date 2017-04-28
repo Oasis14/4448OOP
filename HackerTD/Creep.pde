@@ -41,60 +41,25 @@ class Creep implements Cloneable {
    FloatDict creepPosition = this.getPos();
    float xToTarget = this.pathPoint.getCenterX() - creepPosition.get("centerX");
    float yToTarget = this.pathPoint.getCenterY() - creepPosition.get("centerY");
-   //This is the total if you can only go by right angles, it is to get the ratios
-   float totalToTarget = abs(xToTarget) + abs(yToTarget);
-   float ratioX = xToTarget / totalToTarget;
-   float ratioY = yToTarget / totalToTarget;
+   float distToTarget = sqrt(xToTarget*xToTarget + yToTarget*yToTarget);
    
-   float moveX = this.speed * ratioX;
-   float moveY = this.speed * ratioY;
-   this.xPos += moveX;
-   this.yPos += moveY;
+   if (distToTarget > this.speed){
+     //This is the total if you can only go by right angles, it is to get the ratios
+     float totalToTarget = abs(xToTarget) + abs(yToTarget);
+     float ratioX = xToTarget / totalToTarget;
+     float ratioY = yToTarget / totalToTarget;
+     float moveX = this.speed * ratioX;
+     float moveY = this.speed * ratioY;
+     this.xPos += moveX;
+     this.yPos += moveY;
+   } else {
+     //move creep so hitbox is centered on pathPoint
+     this.xPos = this.pathPoint.getCenterX() - (this.sprite.width/2);
+     this.yPos = this.pathPoint.getCenterY() - (this.sprite.height/2);
+   }
    
    this.updateHitbox();
    
-   
-   
-   //Old Version
-    /*float slopeGrade = (this.pathPoint.getCenterX() - this.xPos) / ( this.pathPoint.getCenterY() - this.yPos);*/
-    
-    /** 
-    * Use trig to get y += cos(theta) * speed
-    * theta = arctan( (x_2 - x_1) / (y_2 - y_1) )
-    * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
-    **/
-    /*int yMult;
-    if(this.pathPoint.getCenterY() - this.yPos >= 0){
-      yMult = 1;
-    }else{
-      yMult = -1;
-    }
-    float yFactor = yMult / ( sqrt(pow(slopeGrade, 2) + 1));
-    float yTranslation = yFactor * this.speed;
-    this.yPos += yTranslation;
-    this.hitbox.set("y1", this.hitbox.get("y1") + yTranslation);
-    this.hitbox.set("y2", this.hitbox.get("y2") + yTranslation);
-     
-    // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
-    int xMult;
-    if(this.pathPoint.getCenterX() - this.xPos >= 0){
-      xMult = 1;
-    }else{
-      xMult = -1;
-    }
-    float xFactor = xMult * abs(slopeGrade) / ( sqrt(pow(slopeGrade, 2) + 1));
-    float xTranslation = xFactor * this.speed;
-    this.xPos += xTranslation;
-    this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
-    this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);*/
-    
-   /**   
-    text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
-    text("Angle: " + atan(slopeGrade), 10, 720);
-    text("Creep X1: " + (int) hitbox.get("x1") + " Creep X2: " + (int) hitbox.get("x2"), 10, 740);
-    text("Creep Y1: " + (int) hitbox.get("y1") + " Creep Y2: " + (int) hitbox.get("y2"), 10, 760);
-    text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
-    **/    
 
  }
  

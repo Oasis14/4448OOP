@@ -65,12 +65,12 @@ class PathPoint {
     **/
     // Checks x position
     
-    if((int) this.getCenterX() >= hitbox.get("x1") && (int) this.getCenterX() <= hitbox.get("x2")){
+    /*if((int) this.getCenterX() >= hitbox.get("x1") && (int) this.getCenterX() <= hitbox.get("x2")){
       // if x position is correct, check Y position
       if((int) this.getCenterY() >= hitbox.get("y1") && (int) this.getCenterY() <= hitbox.get("y2")){
           return true;
       }
-    }
+    }*/
     return false;
   }
   
