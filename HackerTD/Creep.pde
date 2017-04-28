@@ -10,13 +10,15 @@ class Creep implements Cloneable {
   private int spawnFrame, delay;
   public int ID;
   private int totalDelay;
+  private String state;
   
   
   Creep (String imageIn, int health) {
       this.speed = 3;
       this.hp = health;
       this.sprite = loadImage(imageIn);
-
+      this.bounty = 10;
+      this.state = "alive";
    }
  
  /**
@@ -85,7 +87,7 @@ class Creep implements Cloneable {
  * reached the enemy base
  **/
  public void die(){
-   player.addMoney(this.bounty);
+   creepsToRemove.add(this);
    creepsToRemove.add(this);
    // How will this work? This needs to access Map to remove a creep from CreepList
    // Maybe a public method on map?
@@ -124,10 +126,10 @@ class Creep implements Cloneable {
  **/
  public void takeDmg(int health){
     this.hp -= health;
-    if (this.hp <= 0){
+    if (this.hp <= 0 && this.state != "dead"){
       die();
-      creepsToRemove.add(this);
-      // GetGlobalMap.addMoney( this.bounty )
+      player.addScore( this.bounty );
+      this.state = "dead";
     }
  }
  

@@ -4,7 +4,6 @@ class MainMenu extends Menu{
  Button resumeGame = new Button(475,350,250, 35,255,0,"","Resume Game");
  MainMenu(){
   super("mainMenu");
-  currentMenu = "mainMenu";
  }
  
  

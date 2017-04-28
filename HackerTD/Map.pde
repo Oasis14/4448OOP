@@ -50,6 +50,7 @@ class Map {
       towerList.add((Tower) towerToAdd.placeTower(x,y - (towerToAdd.getHeight() / 4)));
       player.removeMoney(towerToAdd.cost);
     }else{
+      fill(255,255,255);
       text("You don't have enough money", 600, 400);
     }  
 }
@@ -128,7 +129,8 @@ class Map {
   public void takeDamage(int damage){
     this.baseHealth -= damage;
     if(this.baseHealth <= 0){
-      
+      currentMenu = "gameOverMenu";
+      paused = true;
     }
   }
   
@@ -185,9 +187,10 @@ class Map {
       projectile.display();
     }
     
+    fill(255,255,255);
     text(player.name, 900, 30);
     text("Base Health : " + this.baseHealth, 900, 50);
     text("Money : " + player.money, 900, 70);
-
+    text("Score : " + player.score, 900, 90);
   }
 }

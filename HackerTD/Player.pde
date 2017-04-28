@@ -10,6 +10,11 @@ public class Player {
     score=0;
   }
   
+  public void reset(){
+    this.money = 100;
+    this.score = 0;
+  }
+  
   public void updateScore(int score){
     this.score = score;
   }

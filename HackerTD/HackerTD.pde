@@ -40,6 +40,8 @@ void setup() {
   currentMenu = "mainMenu";
   menuList.put("gameMenu", new GameMenu());
   menuList.put("mainMenu", new MainMenu());
+  menuList.put("gameOverMenu", new GameOverMenu());
+
   paused = true;
   reset = true;
   
@@ -57,6 +59,7 @@ void draw() {
   if(reset){
     currentMap = map1();
     reset = false;
+    player.reset();
   }
   
 
@@ -75,18 +78,15 @@ void draw() {
   } else{
     currentMap.display();
   }
-  
     menuList.get(currentMenu).update(time);
 
   
   menuList.get(currentMenu).display();
   fill(255);
   textSize(15);
-  text(str(time), width-100, 10);
 
   
 
-  text(frameRate,30,30);
   logger.update(time);
   logger.display(time);
 }

@@ -70,7 +70,6 @@ class Tower implements Cloneable {
        creepPosition = creep.getPos();
        newDistance = dist(centerX, centerY, creepPosition.get("centerX"), creepPosition.get("centerY"));
        if (newDistance < oldDistance && newDistance <= this.range && creep.getActive()){
-         text("New Target Acquired " + closestCreep, 900, 50);
          closestCreep = creep;
          oldDistance = newDistance;
        }
