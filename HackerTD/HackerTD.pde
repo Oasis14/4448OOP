@@ -7,10 +7,14 @@ Boolean paused, reset;
 ArrayList projectilesToRemove;
 ArrayList creepsToRemove;
 
+
 //used for holding all the menus 
 HashMap<String, Menu> menuList;
 String currentMenu;
 
+//Used For tower placing with buttons 
+String towerName;
+Boolean placeTower;
 
 void setup() {
   currentMenu = "mainMenu";
@@ -37,11 +41,12 @@ void setup() {
   paused = true;
   reset = true;
   
+  placeTower = false;
+  
 }
 
 void draw() {
   int time = millis();
-  println(frameRate);
   mouse.update(time, mousePressed);
   mouseLogging(time);
   
@@ -56,6 +61,14 @@ void draw() {
 
   //checks if you need to update the game state
   if(!paused){
+    if(placeTower){
+     if(mousePressed){
+        if(mouseButton == RIGHT){
+          currentMap.addTower(towerName, mouseX, mouseY);
+          placeTower = false;
+        }
+     }
+    }
     currentMap.update(time);
     currentMap.display();
   } else{
@@ -75,27 +88,27 @@ void draw() {
 }
 
 void mouseLogging(int time) {
-    if (mouse.currentEvent == "click") {
-      if (mouseButton == LEFT){
-        if (keyPressed && keyCode == CONTROL ){ 
-          currentMap.addTower("basicTower", mouseX, mouseY);
-        }
-        else if(keyPressed && keyCode == SHIFT){
-          currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
-        }
-        else if(keyPressed && keyCode == ALT){
-          currentMap.addTower("arrowTower", mouseX, mouseY); // This is Testing code
-        }
-      }
+    //if (mouse.currentEvent == "click") {
+    //  if (mouseButton == LEFT){
+    //    if (keyPressed && keyCode == CONTROL ){ 
+    //      currentMap.addTower("basicTower", mouseX, mouseY);
+    //    }
+    //    else if(keyPressed && keyCode == SHIFT){
+    //      currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
+    //    }
+    //    else if(keyPressed && keyCode == ALT){
+    //      currentMap.addTower("arrowTower", mouseX, mouseY); // This is Testing code
+    //    }
+    //  }
       
-      LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-      logger.add_line(l);
+    //  LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
+    //  logger.add_line(l);
 
-    }
-    if (mouse.currentEvent == "hold") {
-      LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-      logger.add_line(l);
-    }
+    //}
+    //if (mouse.currentEvent == "hold") {
+    //  LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
+    //  logger.add_line(l);
+    //}
 }
 
 /**

@@ -1,19 +1,28 @@
 class GameMenu extends Menu {
   
   Button pause = new Button(1150,10,20,20,255,0,"images/pause.png","");
+  Button basicTower1 = new Button(5, 745, 50, 50, 255,0, "images/basicTower.png", "");
+  Button advancedTower = new Button(65, 745,50,50,255,0,"images/advancedTower2.png","");
+  Button arrowTower = new Button(125, 745,50,50,255,0,"images/arrowTower.png","");
   GameMenu(){
     super("gameMenu");
   }
   
   void update(int time) {
     paused = false;
+    
+    //Make sure every Button is being updated.
     pause.update();
-    if(locked == false){
-      //update buttons here
-      
-    }else{
-     locked = false; 
-    }
+    basicTower1.update();
+    advancedTower.update();
+    arrowTower.update();
+    
+    //if(locked == false){
+    //  //update buttons here
+
+    //}else{
+    // locked = false; 
+    //}
     
     if(mousePressed){
      //check each button
@@ -21,12 +30,24 @@ class GameMenu extends Menu {
        //Code here to react when game paused
        currentMenu = "mainMenu";
        paused = true;
+     } else if(basicTower1.pressed()){
+      placeTower = true;
+      towerName = "basicTower";
+     } else if(advancedTower.pressed()){
+      placeTower = true;
+      towerName = "advancedTower";
+     } else if(arrowTower.pressed()){
+      placeTower = true;
+      towerName = "arrowTower";
      }
     }
   }
   
   void display(){
     pause.display();
+    basicTower1.display();
+    advancedTower.display();
+    arrowTower.display();
   }
 
 }
