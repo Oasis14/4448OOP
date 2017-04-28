@@ -35,6 +35,10 @@ public class Player {
     this.money -= money;
   }
   
+  private void updateName(String newName){
+   name = newName; 
+  }
+  
   /**
   private static Player instance = null;
    protected Player() {

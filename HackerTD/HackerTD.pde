@@ -3,7 +3,7 @@ int background;
 Mouse mouse;
 Map currentMap;
 Player player;
-Boolean paused, reset;
+Boolean paused, reset, playerName;
 ArrayList projectilesToRemove;
 ArrayList creepsToRemove;
 
@@ -26,7 +26,7 @@ void setup() {
   frameRate(30);
 
   // Initialize global objects
-  player = new Player("Bob");
+  
   logger = new Log();
   mouse = new Mouse(millis());
   
@@ -37,14 +37,14 @@ void setup() {
   creepsToRemove = new ArrayList();
   
   menuList = new HashMap<String, Menu>();
-  currentMenu = "mainMenu";
+  currentMenu = "playerNameMenu";
   menuList.put("gameMenu", new GameMenu());
   menuList.put("mainMenu", new MainMenu());
   menuList.put("gameOverMenu", new GameOverMenu());
-
+  menuList.put("playerNameMenu", new PlayerNameMenu());
+  player = new Player("");
   paused = true;
   reset = true;
-  
   placeTower = false;
   
 }
@@ -78,7 +78,7 @@ void draw() {
   } else{
     currentMap.display();
   }
-    menuList.get(currentMenu).update(time);
+  menuList.get(currentMenu).update(time);
 
   
   menuList.get(currentMenu).display();
