@@ -45,7 +45,7 @@ public class GameOverMenu extends Menu{
        //Code here to react when game paused
        paused = false;
        reset = true;
-       currentMenu = "gameOverMenu"; 
+       currentMenu = "gameMenu"; 
      } else if (exitGame.pressed()){
       exit();
      }
