@@ -49,28 +49,18 @@ class PathPoint {
     return this.nextPath;
   }
   
-  /**
-  * Currently returns whether the pathpoint is within the hitbox, might want to change it so that the center is within the hitbox
-  * @return Boolean whether the pathpoint is contained within the hitbox
-  **/
-  public Boolean collide(FloatDict hitbox){
-
-    
-    /** Vertex indices of rectangle
-    *         y1
-    *    o -------- o
-    * x1 |          | x2
-    *    o -------- o
-    *         y2
+  public Boolean collide(Creep creep){
+    /**
+    *  Checks to see if the center of the creep is within 3 pixels of the center of the pathPoint
     **/
-    // Checks x position
     
-    /*if((int) this.getCenterX() >= hitbox.get("x1") && (int) this.getCenterX() <= hitbox.get("x2")){
+    FloatDict creepPosition = creep.getPos();
+    if(this.getCenterX()+3 >= creepPosition.get("centerX") && this.getCenterX()-3 <= creepPosition.get("centerX")){
       // if x position is correct, check Y position
-      if((int) this.getCenterY() >= hitbox.get("y1") && (int) this.getCenterY() <= hitbox.get("y2")){
+      if(this.getCenterY()+3 >= creepPosition.get("centerY") && this.getCenterY()-3 <= creepPosition.get("centerY")){
           return true;
       }
-    }*/
+    }
     return false;
   }
   

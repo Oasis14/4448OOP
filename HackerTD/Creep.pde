@@ -27,7 +27,7 @@ class Creep implements Cloneable {
  * Moves in a direct line to the next pathPoint by this.speed amount
  **/
  public void path(){
-   if(this.pathPoint.collide(this.hitbox)){
+   if(this.pathPoint.collide(this)){
      //If we hit the base
      if(this.pathPoint.isBase()){
          currentMap.takeDamage(5); // subtract 5 hp
