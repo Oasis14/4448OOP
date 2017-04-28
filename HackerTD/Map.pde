@@ -166,24 +166,21 @@ class Map {
     projectilesToRemove = new ArrayList();
     creepsToRemove = new ArrayList();
     
+    for (Tower tower : towerList) {
+      tower.display();
+    }
+    
     for (PathPoint point : pathPoints) {
       point.display();
     }
     
     for (Creep creep : creepList) {
       if (creep.getActive()){
-        //creep.update();
         creep.display();
       }
     }
-    
-    for (Tower tower : towerList) {
-      //tower.update();
-      tower.display();
-    }
 
     for (Projectile projectile : projectileList) {
-      //projectile.update();
       projectile.display();
     }
     
