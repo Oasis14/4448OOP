@@ -76,8 +76,8 @@ class Map {
   * @param int y position to spawn at
   * @param int delay How many milliseconds to delay pathing
   **/
-  public void addCreep(String creepKey, int x, int y, int delay){
-    creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(x,y, this.startPoint, delay)) ;
+  public void addCreep(String creepKey, int delay){
+    creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(this.startPoint.getCenterX(),this.startPoint.getCenterY(), this.startPoint, delay)) ;
   }
   
 

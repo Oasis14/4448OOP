@@ -136,32 +136,40 @@ Map map1(){
   map.addPathPoint(350, 500);
   map.addPathPoint(50, 500);
   map.addPathPoint(50, 50);
+  
+  /*map.addPathPoint(50, 700);
+  map.addPathPoint(60, 500);
+  map.addPathPoint(100, 300);
+  map.addPathPoint(180, 99);
+  map.addPathPoint(320, 100);
+  map.addPathPoint(400, 300);*/
+  
 
 
   
   //Populate creeps
-  map.addCreep("basicCreep", 400, 400, 0); // Add creep at (400, 400) with 100 ms of delay
-  map.addCreep("basicCreep", 400, 400, 50); // Add creep at (400, 400) with 100 ms of delay
-  map.addCreep("basicCreep", 400, 400, 130); // Add creep at (400, 400) with 100 ms of delay
-  map.addCreep("basicCreep", 400, 400, 100); // Add creep at (400, 400) with 100 ms of delay
-  map.addCreep("basicCreep2", 400, 400, 150);
-  map.addCreep("basicCreep", 400, 400, 164);
-  map.addCreep("basicCreep", 400, 400, 180);
-  map.addCreep("basicCreep2", 400, 400, 195);
-  map.addCreep("basicCreep2", 400, 400, 210);
-  map.addCreep("basicCreep2", 400, 400, 200);
+  map.addCreep("basicCreep",0); // Add creep at startPoint with 100 ms of delay
+  map.addCreep("basicCreep",50); 
+  map.addCreep("basicCreep",130); 
+  map.addCreep("basicCreep",100); 
+  map.addCreep("basicCreep2",150);
+  map.addCreep("basicCreep",164);
+  map.addCreep("basicCreep",180);
+  map.addCreep("basicCreep2",195);
+  map.addCreep("basicCreep2",210);
+  map.addCreep("basicCreep2",200);
 
-  map.addCreep("basicCreep2", 400, 400, 250);
-  map.addCreep("basicCreep", 400, 400, 264);
-  map.addCreep("basicCreep", 400, 400, 280);
-  map.addCreep("basicCreep2", 400, 400, 295);
-  map.addCreep("basicCreep2", 400, 400, 310);
-  map.addCreep("basicCreep2", 400, 400, 260);
-  map.addCreep("basicCreep", 400, 400, 274);
-  map.addCreep("basicCreep", 400, 400, 280);
-  map.addCreep("basicCreep2", 400, 400, 300);
-  map.addCreep("basicCreep2", 400, 400, 310);
-  map.addCreep("basicCreep2", 400, 400, 315);
+  map.addCreep("basicCreep2",250);
+  map.addCreep("basicCreep",264);
+  map.addCreep("basicCreep",280);
+  map.addCreep("basicCreep2",295);
+  map.addCreep("basicCreep2",310);
+  map.addCreep("basicCreep2",260);
+  map.addCreep("basicCreep",274);
+  map.addCreep("basicCreep",280);
+  map.addCreep("basicCreep2",300);
+  map.addCreep("basicCreep2",310);
+  map.addCreep("basicCreep2",315);
 
 
   return map;

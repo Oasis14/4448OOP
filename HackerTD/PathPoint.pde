@@ -15,7 +15,7 @@ class PathPoint {
     // The only PathPoint without a nextPath is the base
     if (nextPath == null){
       isBase = true;
-      this.sprite = loadImage("pathPoint.png");
+      this.sprite = loadImage("pathPointBase.png");
 
     }
     else{
@@ -82,7 +82,7 @@ class PathPoint {
     return this.yPos;
   }
   
-    public float getCenterX(){
+  public float getCenterX(){
     return this.xPos + this.sprite.width/2;
   }
   
