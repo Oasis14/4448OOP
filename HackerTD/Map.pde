@@ -181,7 +181,6 @@ class Map {
     }
     
 
-
     text("Base Health : " + this.baseHealth, 900, 50);
   }
 }

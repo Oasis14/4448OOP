@@ -1,5 +1,5 @@
 Log logger; 
-int background = 0;
+int background;
 Mouse mouse;
 Map currentMap;
 Player player;
@@ -17,6 +17,8 @@ String towerName;
 Boolean placeTower;
 
 void setup() {
+  background=0;
+  
   currentMenu = "mainMenu";
   // Setup window and game settings
   size(1200, 800);
@@ -109,15 +111,6 @@ void mouseLogging(int time) {
     //  LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
     //  logger.add_line(l);
     //}
-}
-
-/**
-* THIS IS TEMPORARY FUNCTION WILL BE REMOVED
-**/
-void keyPressed(){
-  if(keyCode == CONTROL){
-    print("HE");
-  }
 }
 
 

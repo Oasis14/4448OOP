@@ -203,9 +203,6 @@ class Creep implements Cloneable {
     this.xPos = x - this.sprite.width / 2;
     this.yPos = y - this.sprite.height / 2;
     
-
-
-    
     this.spawnFrame = frameCount;
     this.delay = delay;
     this.totalDelay = this.spawnFrame + this.delay;
