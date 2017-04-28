@@ -38,15 +38,32 @@ class Creep implements Cloneable {
      }
    }
    
+   FloatDict creepPosition = this.getPos();
+   float xToTarget = this.pathPoint.getCenterX() - creepPosition.get("centerX");
+   float yToTarget = this.pathPoint.getCenterY() - creepPosition.get("centerY");
+   //This is the total if you can only go by right angles, it is to get the ratios
+   float totalToTarget = abs(xToTarget) + abs(yToTarget);
+   float ratioX = xToTarget / totalToTarget;
+   float ratioY = yToTarget / totalToTarget;
    
-    float slopeGrade = (this.pathPoint.getCenterX() - this.xPos) / ( this.pathPoint.getCenterY() - this.yPos);
+   float moveX = this.speed * ratioX;
+   float moveY = this.speed * ratioY;
+   this.xPos += moveX;
+   this.yPos += moveY;
+   
+   this.updateHitbox();
+   
+   
+   
+   //Old Version
+    /*float slopeGrade = (this.pathPoint.getCenterX() - this.xPos) / ( this.pathPoint.getCenterY() - this.yPos);*/
     
     /** 
     * Use trig to get y += cos(theta) * speed
     * theta = arctan( (x_2 - x_1) / (y_2 - y_1) )
     * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
     **/
-    int yMult;
+    /*int yMult;
     if(this.pathPoint.getCenterY() - this.yPos >= 0){
       yMult = 1;
     }else{
@@ -69,7 +86,7 @@ class Creep implements Cloneable {
     float xTranslation = xFactor * this.speed;
     this.xPos += xTranslation;
     this.hitbox.set("x1", this.hitbox.get("x1") + xTranslation);
-    this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);
+    this.hitbox.set("x2", this.hitbox.get("x2") + xTranslation);*/
     
    /**   
     text("XMult: " + xMult + " YMult: " + yMult, 10, 700);
@@ -79,6 +96,13 @@ class Creep implements Cloneable {
     text("PathPoint x: " + this.pathPoint.getX() + " PathPoint y: " + this.pathPoint.getY(), 10, 780);
     **/    
 
+ }
+ 
+ private void updateHitbox() {
+    this.hitbox.set("x1", this.xPos);
+    this.hitbox.set("x2", this.xPos+this.sprite.width);
+    this.hitbox.set("y1", this.yPos);
+    this.hitbox.set("y2", this.yPos+this.sprite.height);
  }
  
  
