@@ -92,27 +92,26 @@ void draw() {
 }
 
 void mouseLogging(int time) {
-    //if (mouse.currentEvent == "click") {
-    //  if (mouseButton == LEFT){
-    //    if (keyPressed && keyCode == CONTROL ){ 
-    //      currentMap.addTower("basicTower", mouseX, mouseY);
-    //    }
-    //    else if(keyPressed && keyCode == SHIFT){
-    //      currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
-    //    }
-    //    else if(keyPressed && keyCode == ALT){
-    //      currentMap.addTower("arrowTower", mouseX, mouseY); // This is Testing code
-    //    }
-    //  }
+    /*if (mouse.currentEvent == "click") {
+      if (mouseButton == LEFT){
+        if (keyPressed && keyCode == CONTROL ){ 
+          currentMap.addTower("basicTower", mouseX, mouseY);
+        }
+        else if(keyPressed && keyCode == SHIFT){
+          currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
+        }
+        else if(keyPressed && keyCode == ALT){
+          currentMap.addTower("arrowTower", mouseX, mouseY); // This is Testing code
+        }
+      }
       
-    //  LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-    //  logger.add_line(l);
-
-    //}
-    //if (mouse.currentEvent == "hold") {
-    //  LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-    //  logger.add_line(l);
-    //}
+      LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
+      logger.add_line(l);
+    }
+    if (mouse.currentEvent == "hold") {
+      LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
+      logger.add_line(l);
+    }*/
 }
 
 

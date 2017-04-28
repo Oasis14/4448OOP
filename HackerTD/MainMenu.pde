@@ -2,6 +2,8 @@ class MainMenu extends Menu{
   
  Button newGame = new Button(475,300,250, 35,255,0,"","New Game");
  Button resumeGame = new Button(475,350,250, 35,255,0,"","Resume Game");
+ Button exitGame = new Button(475,400,250, 35,255,0,"","Exit Game");
+
  MainMenu(){
   super("mainMenu");
  }
@@ -22,12 +24,13 @@ class MainMenu extends Menu{
     //new game button
     newGame.display();
     resumeGame.display();
-    
+    exitGame.display();   
   }
   
   void update(int time){
     newGame.update();
     resumeGame.update();
+    exitGame.update();
     if(locked == false){
       //update buttons here
       
