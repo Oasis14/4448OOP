@@ -78,9 +78,8 @@ void draw() {
   } else{
     currentMap.display();
   }
-    menuList.get(currentMenu).update(time);
+  menuList.get(currentMenu).update(time);
 
-  
   menuList.get(currentMenu).display();
   fill(255);
   textSize(15);
