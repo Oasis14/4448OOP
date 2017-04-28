@@ -52,5 +52,5 @@ class MainMenu extends Menu{
       exit();
     }
   }
-  
+  }
 }

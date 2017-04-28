@@ -166,10 +166,7 @@ class Map {
     projectilesToRemove = new ArrayList();
     creepsToRemove = new ArrayList();
     
-    for (Tower tower : towerList) {
-      tower.display();
-    }
-    
+
     for (PathPoint point : pathPoints) {
       point.display();
     }
@@ -182,6 +179,10 @@ class Map {
 
     for (Projectile projectile : projectileList) {
       projectile.display();
+    }
+    
+    for (Tower tower : towerList) {
+      tower.display();
     }
     
     fill(255,255,255);
