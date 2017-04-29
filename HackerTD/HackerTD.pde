@@ -16,7 +16,42 @@ String currentMenu;
 String towerName;
 Boolean placeTower;
 
+//database imports
+import de.bezier.data.sql.*;
+SQLite db;
+
+//used to get the return from the query. Will move around on next commit
+class TableOne
+{
+    public String NAME;
+    public int SCORE;
+    
+    public String toString()
+    {
+        return String.format("Name: %s Score: %d", NAME, SCORE);
+    }
+}
+
 void setup() {
+  //Setting up dataBase stuff
+  db = new SQLite(this,"HackerTD.db"); //open data base file
+  
+  if(db.connect()){
+    //getsList of all table names
+    String[] tableNames = db.getTableNames();
+    println(tableNames);
+    //This command inserts corectly
+    //db.query("INSERT INTO SCORES VALUES(\"tes\",25);");
+    
+    db.query( "SELECT * FROM %s;", tableNames[0] );
+        while (db.next())
+        {
+            TableOne t = new TableOne();
+            db.setFromRow( t );
+            println( t.toString() );
+        }
+  }
+  
   background=0;
   
   currentMenu = "mainMenu";
