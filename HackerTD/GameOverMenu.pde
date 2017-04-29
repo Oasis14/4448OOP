@@ -2,7 +2,8 @@ public class GameOverMenu extends Menu{
   Button newGame = new Button(475,300,250, 35,255,0,"","New Game");
   Button submitScore = new Button(475,350,250, 35,255,0,"","Submit Score");
   Button exitGame = new Button(475,400,250, 35,255,0,"","Exit Game");
-
+  
+  
   GameOverMenu(){
     super("gameOverMenu");
    }
@@ -25,6 +26,7 @@ public class GameOverMenu extends Menu{
     newGame.display();
     submitScore.display();
     exitGame.display();
+    
 
   }
   
@@ -48,6 +50,8 @@ public class GameOverMenu extends Menu{
        currentMenu = "gameMenu"; 
      } else if (exitGame.pressed()){
       exit();
+     } else if (submitScore.pressed()){
+       db.query("INSERT INTO SCORES VALUES(\"%s\",%d);",player.name,player.score);
      }
     }
   }
