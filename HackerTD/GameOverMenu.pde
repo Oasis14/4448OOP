@@ -51,7 +51,8 @@ public class GameOverMenu extends Menu{
      } else if (exitGame.pressed()){
       exit();
      } else if (submitScore.pressed()){
-       db.query("INSERT INTO SCORES VALUES(\"%s\",%d);",player.name,player.score);
+       db.query("INSERT OR IGNORE INTO SCORES ('name','score') VALUES(\"%s\",%d);",player.name,player.score);
+       db.query("UPDATE SCORES SET score = %d WHERE name == \"%s\" AND score < %d;",player.score, player.name, player.score);
      }
     }
   }

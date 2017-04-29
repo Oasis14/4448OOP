@@ -37,9 +37,10 @@ void setup() {
   db = new SQLite(this,"HackerTD.db"); //open data base file
   
   if(db.connect()){
+    //db.query("CREATE TABLE SCORES (NAME char(3),SCORE int,PRIMARY KEY (NAME));");
     //getsList of all table names
     String[] tableNames = db.getTableNames();
-    println(tableNames);
+    println(tableNames[0]);
     //This command inserts corectly
     //db.query("INSERT INTO SCORES VALUES(\"tes\",25);");
     
@@ -205,7 +206,7 @@ Map map1(){
   map.addCreep("basicCreep2",300);
   map.addCreep("basicCreep2",310);
   map.addCreep("basicCreep2",315);
-
+  map.addCreep("basicCreep",400);
 
   return map;
 }
