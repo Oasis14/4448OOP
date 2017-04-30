@@ -25,19 +25,9 @@ void setup() {
   //Setting up dataBase stuff
   db = new SQLite(this,"HackerTD.db"); //open data base file
   if(db.connect()){
-    //db.query("CREATE TABLE SCORES (NAME char(3),SCORE int,PRIMARY KEY (NAME));");
-    //getsList of all table names
+    println("Connected to the dataBase");
     String[] tableNames = db.getTableNames();
     println(tableNames[0]);
-    //db.query( "SELECT * FROM %s;", tableNames[0] );
-    //db.query("SELECT * FROM SCORES ORDER BY SCORE DESC, NAME LIMIT 5;");
-    
-        //while (db.next())
-        //{
-        //    Score t = new Score();
-        //    db.setFromRow( t );
-        //    println( t.toString() );
-        //}
   }
   
   background=0;
@@ -99,6 +89,15 @@ void draw() {
     }
     currentMap.update(time);
     currentMap.display();
+    //needed to do this after the map display to draw the new tower ontop
+    if(placeTower){
+     int xPos = mouseX - currentMap.protoTowers.get(towerName).sprite.width / 2;
+     int yPos = mouseY - currentMap.protoTowers.get(towerName).sprite.height / 2;
+     PImage towerImg = currentMap.protoTowers.get(towerName).sprite;
+     tint(255,126);
+     image(towerImg, xPos, yPos);
+     noTint();
+    }
   } else{
     currentMap.display();
   }
