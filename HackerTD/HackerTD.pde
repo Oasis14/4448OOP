@@ -20,37 +20,24 @@ Boolean placeTower;
 import de.bezier.data.sql.*;
 SQLite db;
 
-//used to get the return from the query. Will move around on next commit
-class TableOne
-{
-    public String NAME;
-    public int SCORE;
-    
-    public String toString()
-    {
-        return String.format("Name: %s Score: %d", NAME, SCORE);
-    }
-}
 
 void setup() {
   //Setting up dataBase stuff
   db = new SQLite(this,"HackerTD.db"); //open data base file
-  
   if(db.connect()){
     //db.query("CREATE TABLE SCORES (NAME char(3),SCORE int,PRIMARY KEY (NAME));");
     //getsList of all table names
     String[] tableNames = db.getTableNames();
     println(tableNames[0]);
-    //This command inserts corectly
-    //db.query("INSERT INTO SCORES VALUES(\"tes\",25);");
+    //db.query( "SELECT * FROM %s;", tableNames[0] );
+    //db.query("SELECT * FROM SCORES ORDER BY SCORE DESC, NAME LIMIT 5;");
     
-    db.query( "SELECT * FROM %s;", tableNames[0] );
-        while (db.next())
-        {
-            TableOne t = new TableOne();
-            db.setFromRow( t );
-            println( t.toString() );
-        }
+        //while (db.next())
+        //{
+        //    Score t = new Score();
+        //    db.setFromRow( t );
+        //    println( t.toString() );
+        //}
   }
   
   background=0;
@@ -78,6 +65,7 @@ void setup() {
   menuList.put("mainMenu", new MainMenu());
   menuList.put("gameOverMenu", new GameOverMenu());
   menuList.put("playerNameMenu", new PlayerNameMenu());
+  menuList.put("highScores", new HighScore());
   player = new Player("");
   paused = true;
   reset = true;
