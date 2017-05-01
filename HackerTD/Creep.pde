@@ -130,8 +130,9 @@ class Creep implements Cloneable {
    // Display health bar
    noStroke();
    rectMode(CORNER);
-   fill( 255, 100-this.hp , 100-this.hp * 0.5 );
-   rect(this.xPos,this.yPos-10, this.hp * 0.5, 5); 
+   fill( 255, 100-this.hp , 100-this.hp );
+   
+   rect(this.xPos,this.yPos-10, 7 * log(this.hp), 5); 
  }
  /**
  * Public function so that external classes can determine if this has died
