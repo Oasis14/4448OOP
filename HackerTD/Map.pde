@@ -25,8 +25,10 @@ class Map {
 
     // Populate prototypes
     
-    this.protoCreeps.put("basicCreep", new Creep("images/basicCreep.png", 50));
-    this.protoCreeps.put("basicCreep2", new Creep("images/basicCreep2.png", 100));
+    this.protoCreeps.put("basicCreep", new Creep("images/basicCreep.png", 50, 5));
+    this.protoCreeps.put("basicCreep2", new Creep("images/basicCreep2.png", 100, 3));
+    this.protoCreeps.put("basicCreep3", new Creep("images/basicCreep.png", 100, 6));
+    this.protoCreeps.put("basicCreep4", new Creep("images/basicCreep2.png", 200, 4));
     
     this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 30, 7));
     this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 50, 20));

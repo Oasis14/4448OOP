@@ -13,8 +13,8 @@ class Creep implements Cloneable {
   private String state;
   
   
-  Creep (String imageIn, int health) {
-      this.speed = 3;
+  Creep (String imageIn, int health, int speed) {
+      this.speed = speed;
       this.hp = health;
       this.sprite = loadImage(imageIn);
       this.bounty = 10;

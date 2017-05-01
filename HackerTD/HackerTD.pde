@@ -159,6 +159,33 @@ Map map1(){
   map.addCreep("basicCreep2",310);
   map.addCreep("basicCreep2",315);
   map.addCreep("basicCreep",400);
+  
+  int round = 400;
+  for (int i = 1; i < 6; i += 1){
+  map.addCreep("basicCreep3",0+round*i); 
+  map.addCreep("basicCreep3",50+round*i); 
+  map.addCreep("basicCreep3",130+round*i); 
+  map.addCreep("basicCreep3",100+round*i); 
+  map.addCreep("basicCreep4",150+round*i);
+  map.addCreep("basicCreep3",164+round*i);
+  map.addCreep("basicCreep3",180+round*i);
+  map.addCreep("basicCreep4",195+round*i);
+  map.addCreep("basicCreep4",210+round*i);
+  map.addCreep("basicCreep4",200+round*i);
+
+  map.addCreep("basicCreep4",250+round*i);
+  map.addCreep("basicCreep3",264+round*i);
+  map.addCreep("basicCreep3",280+round*i);
+  map.addCreep("basicCreep4",295+round*i);
+  map.addCreep("basicCreep4",310+round*i);
+  map.addCreep("basicCreep4",260+round*i);
+  map.addCreep("basicCreep3",274+round*i);
+  map.addCreep("basicCreep3",280+round*i);
+  map.addCreep("basicCreep4",300+round*i);
+  map.addCreep("basicCreep4",310+round*i);
+  map.addCreep("basicCreep4",315+round*i);
+  map.addCreep("basicCreep3",400+round*i);
+  }
 
   return map;
 }
