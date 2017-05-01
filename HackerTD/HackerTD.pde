@@ -66,7 +66,6 @@ void setup() {
 void draw() {
   int time = millis();
   mouse.update(time, mousePressed);
-  mouseLogging(time);
   
   
   //if we reset the game or creat a new one clear the old map and start over
