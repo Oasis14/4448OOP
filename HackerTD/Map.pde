@@ -29,10 +29,10 @@ class Map {
     this.protoCreeps.put("basicCreep2", new Creep("images/basicCreep2.png", 100));
     
     this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 30, 7));
-    this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 30, 7));
+    this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 50, 20));
     
-    this.protoTowers.put("basicTower", new Tower("testTower", "images/basicTower.png", 50, 150, this.protoProjectiles.get("bullet"), 25)); // Tower Type, image, fire rate, range, cost
-    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower2.png", 30, 250, this.protoProjectiles.get("laser"), 50)); // Tower Type, image, fire rate, range, cost
+    this.protoTowers.put("basicTower", new Tower("testTower", "images/basicTower.png", 50, 350, this.protoProjectiles.get("bullet"), 25)); // Tower Type, image, fire rate, range, cost
+    this.protoTowers.put("advancedTower", new Tower("advancedTower", "images/advancedTower2.png", 30, 350, this.protoProjectiles.get("laser"), 50)); // Tower Type, image, fire rate, range, cost
     this.protoTowers.put("arrowTower", new Tower("advancedTower", "images/arrowTower.png", 10, 250, this.protoProjectiles.get("bullet"), 70)); // Tower Type, image, fire rate, range, cost
 
 
