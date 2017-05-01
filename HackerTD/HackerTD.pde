@@ -90,31 +90,6 @@ void draw() {
   logger.display(time);
 }
 
-void mouseLogging(int time) {
-    /*if (mouse.currentEvent == "click") {
-      if (mouseButton == LEFT){
-        if (keyPressed && keyCode == CONTROL ){ 
-          currentMap.addTower("basicTower", mouseX, mouseY);
-        }
-        else if(keyPressed && keyCode == SHIFT){
-          currentMap.addTower("advancedTower", mouseX, mouseY); // This is Testing code
-        }
-        else if(keyPressed && keyCode == ALT){
-          currentMap.addTower("arrowTower", mouseX, mouseY); // This is Testing code
-        }
-      }
-      
-      LogLine l = new LogLine("Mouse click at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-      logger.add_line(l);
-    }
-    if (mouse.currentEvent == "hold") {
-      LogLine l = new LogLine("Mouse hold at: " + str(time) + ": X " + str(mouseX) + ", Y " + str(mouseY), time, 5000);
-      logger.add_line(l);
-    }*/
-}
-
-
-
 boolean over_rect (int x, int y, int rectWidth, int rectHeight) {
   if (mouseX >= x && mouseX <= x+rectWidth && 
       mouseY >= y && mouseY <= y+rectHeight) {
@@ -136,15 +111,6 @@ Map map1(){
   map.addPathPoint(350, 500);
   map.addPathPoint(50, 500);
   map.addPathPoint(50, 50);
-  
-  /*map.addPathPoint(50, 700);
-  map.addPathPoint(60, 500);
-  map.addPathPoint(100, 300);
-  map.addPathPoint(180, 99);
-  map.addPathPoint(320, 100);
-  map.addPathPoint(400, 300);*/
-  
-
 
   
   //Populate creeps
