@@ -25,10 +25,22 @@ class Map {
 
     // Populate prototypes
     
-    this.protoCreeps.put("basicCreep", new Creep("images/basicCreep.png", 50, 5));
+    this.protoCreeps.put("basicCreep1", new Creep("images/basicCreep.png", 50, 5));
     this.protoCreeps.put("basicCreep2", new Creep("images/basicCreep2.png", 100, 3));
-    this.protoCreeps.put("basicCreep3", new Creep("images/basicCreep3.png", 100, 6));
-    this.protoCreeps.put("basicCreep4", new Creep("images/basicCreep4.png", 200, 4));
+
+    this.protoCreeps.put("basicCreep3", new Creep("images/basicCreep.png", 100, 6));
+    this.protoCreeps.put("basicCreep4", new Creep("images/basicCreep2.png", 200, 4));
+    this.protoCreeps.put("basicCreep5", new Creep("images/basicCreep5.png", 150, 7));
+    this.protoCreeps.put("basicCreep6", new Creep("images/basicCreep6.png", 300, 4));
+    this.protoCreeps.put("basicCreep7", new Creep("images/basicCreep.png", 200, 8));
+    this.protoCreeps.put("basicCreep8", new Creep("images/basicCreep6.png", 400, 4));
+    this.protoCreeps.put("basicCreep9", new Creep("images/basicCreep4.png", 250, 9));
+    this.protoCreeps.put("basicCreep10", new Creep("images/basicCreep2.png", 500, 4));
+    this.protoCreeps.put("basicCreep11", new Creep("images/basicCreep4.png", 300, 10));
+    this.protoCreeps.put("basicCreep12", new Creep("images/basicCreep8.png", 600, 4));
+    this.protoCreeps.put("basicCreep13", new Creep("images/basicCreep8.png", 500, 10));
+    this.protoCreeps.put("basicCreep14", new Creep("images/basicCreep7.png", 1000, 4));
+    this.protoCreeps.put("boss", new Creep("images/basicCreep3.png", 20000, 2));
     
     this.protoProjectiles.put("bullet", new Projectile("images/projectile.png", 30, 7));
     this.protoProjectiles.put("laser", new Projectile("images/laserProjectile.png", 50, 20));
@@ -79,6 +91,7 @@ class Map {
   * @param int delay How many milliseconds to delay pathing
   **/
   public void addCreep(String creepKey, int delay){
+    //println(creepKey);
     creepList.add( (Creep) protoCreeps.get(creepKey).placeCreep(this.startPoint.getCenterX(),this.startPoint.getCenterY(), this.startPoint, delay)) ;
   }
   
@@ -178,13 +191,13 @@ class Map {
         creep.display();
       }
     }
-
-    for (Projectile projectile : projectileList) {
-      projectile.display();
-    }
     
     for (Tower tower : towerList) {
       tower.display();
+    }
+    
+    for (Projectile projectile : projectileList) {
+      projectile.display();
     }
     
     fill(255,255,255);
