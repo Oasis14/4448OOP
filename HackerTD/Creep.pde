@@ -6,6 +6,7 @@ class Creep implements Cloneable {
   private float xPos, yPos;
   private int speed;
   private int hp;
+  private int max_hp;
   private FloatDict hitbox;
   private int spawnFrame, delay;
   public int ID;
@@ -16,6 +17,7 @@ class Creep implements Cloneable {
   Creep (String imageIn, int health, int speed) {
       this.speed = speed;
       this.hp = health;
+      this.max_hp_ = health;
       this.sprite = loadImage(imageIn);
       this.bounty = 10;
       this.state = "alive";
@@ -132,7 +134,7 @@ class Creep implements Cloneable {
    rectMode(CORNER);
    fill( 255, 100-this.hp , 100-this.hp );
    
-   rect(this.xPos,this.yPos-10, 7 * log(this.hp), 5); 
+   rect(this.xPos,this.yPos-10, 7 * log(this.hp) * this.hp/this.max_hp, 5); 
  }
  /**
  * Public function so that external classes can determine if this has died
