@@ -16,7 +16,20 @@ String currentMenu;
 String towerName;
 Boolean placeTower;
 
+//database imports
+import de.bezier.data.sql.*;
+SQLite db;
+
+
 void setup() {
+  //Setting up dataBase stuff
+  db = new SQLite(this,"HackerTD.db"); //open data base file
+  if(db.connect()){
+    println("Connected to the dataBase");
+    String[] tableNames = db.getTableNames();
+    println(tableNames[0]);
+  }
+  
   background=0;
   
   currentMenu = "mainMenu";
@@ -42,6 +55,7 @@ void setup() {
   menuList.put("mainMenu", new MainMenu());
   menuList.put("gameOverMenu", new GameOverMenu());
   menuList.put("playerNameMenu", new PlayerNameMenu());
+  menuList.put("highScores", new HighScore());
   player = new Player("");
   paused = true;
   reset = true;
@@ -75,6 +89,15 @@ void draw() {
     }
     currentMap.update(time);
     currentMap.display();
+    //needed to do this after the map display to draw the new tower ontop
+    if(placeTower){
+     int xPos = mouseX - currentMap.protoTowers.get(towerName).sprite.width / 2;
+     int yPos = mouseY - currentMap.protoTowers.get(towerName).sprite.height / 2;
+     PImage towerImg = currentMap.protoTowers.get(towerName).sprite;
+     tint(255,126);
+     image(towerImg, xPos, yPos);
+     noTint();
+    }
   } else{
     currentMap.display();
   }
@@ -136,7 +159,7 @@ Map map1(){
   map.addCreep("basicCreep2",300);
   map.addCreep("basicCreep2",310);
   map.addCreep("basicCreep2",315);
-
+  map.addCreep("basicCreep",400);
 
   return map;
 }

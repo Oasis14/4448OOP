@@ -1,8 +1,10 @@
 public class GameOverMenu extends Menu{
   Button newGame = new Button(475,300,250, 35,255,0,"","New Game");
   Button submitScore = new Button(475,350,250, 35,255,0,"","Submit Score");
-  Button exitGame = new Button(475,400,250, 35,255,0,"","Exit Game");
-
+  Button highScore = new Button(475,400,250, 35,255,0,"","High Scores");
+  Button exitGame = new Button(475,450,250, 35,255,0,"","Exit Game");
+  
+  
   GameOverMenu(){
     super("gameOverMenu");
    }
@@ -25,6 +27,7 @@ public class GameOverMenu extends Menu{
     newGame.display();
     submitScore.display();
     exitGame.display();
+    highScore.display();    
 
   }
   
@@ -32,12 +35,7 @@ public class GameOverMenu extends Menu{
     newGame.update();
     exitGame.update();
     submitScore.update();
-    if(locked == false){
-      //update buttons here
-      
-    }else{
-     locked = false; 
-    }
+    highScore.update();
     
     if(mousePressed){
      //check each button
@@ -48,6 +46,12 @@ public class GameOverMenu extends Menu{
        currentMenu = "gameMenu"; 
      } else if (exitGame.pressed()){
       exit();
+     } else if (submitScore.pressed()){
+       db.query("INSERT OR IGNORE INTO SCORES ('name','score') VALUES(\"%s\",%d);",player.name,player.score);
+       db.query("UPDATE SCORES SET score = %d WHERE name == \"%s\" AND score < %d;",player.score, player.name, player.score);
+     } else if(highScore.pressed()) {
+       paused = true;
+       currentMenu = "highScores";
      }
     }
   }
