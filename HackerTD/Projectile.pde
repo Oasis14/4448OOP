@@ -37,36 +37,25 @@ class Projectile implements Cloneable {
    * Move the bullet closer
    **/
    public void updatePos(){
-     FloatDict targetPos = this.target.getPos();
-     float slopeGrade = (targetPos.get("centerX") - this.xPos) / ( targetPos.get("centerY") - this.yPos);
-    
-    /** 
-    * Use trig to get y += cos(theta) * speed
-    * theta = arctan( (x_2 - x_1) / (y_2 - y_1) )
-    * cos(arctan(x)) => 1 / sqrt(x^2 + 1^2)
-    **/
-    
-    int yMult;
-    if(targetPos.get("centerY") - this.yPos >= 0){
-      yMult = 1;
-    }else{
-      yMult = -1;
-    }
-    float yFactor = yMult / ( sqrt(pow(slopeGrade, 2) + 1));
-    float yTranslation = yFactor * this.speed;
-    this.yPos += yTranslation;
-
+     FloatDict creepPosition = this.target.getPos();
+     float xToTarget = creepPosition.get("centerX") - this.getX();
+     float yToTarget = creepPosition.get("centerY") - this.getY();
+     float distToTarget = sqrt(xToTarget*xToTarget + yToTarget*yToTarget);
      
-    // Same but with sin(arctan(x) => x / sqrt(x^2 + 1^2)
-    int xMult;
-    if(targetPos.get("centerX") - this.xPos >= 0){
-      xMult = 1;
-    }else{
-      xMult = -1;
-    }
-    float xFactor = xMult * abs(slopeGrade) / ( sqrt(pow(slopeGrade, 2) + 1));
-    float xTranslation = xFactor * this.speed;
-    this.xPos += xTranslation;
+     if (distToTarget > this.speed){
+       //This is the total if you can only go by right angles, it is to get the ratios
+       float totalToTarget = abs(xToTarget) + abs(yToTarget);
+       float ratioX = xToTarget / totalToTarget;
+       float ratioY = yToTarget / totalToTarget;
+       float moveX = this.speed * ratioX;
+       float moveY = this.speed * ratioY;
+       this.xPos += moveX;
+       this.yPos += moveY;
+     } else {
+       //move creep so hitbox is centered on pathPoint
+       this.xPos = creepPosition.get("centerX") - (this.sprite.width/2);
+       this.yPos = creepPosition.get("centerY") - (this.sprite.height/2);
+     }
    }
    
    
