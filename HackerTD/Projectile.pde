@@ -1,5 +1,5 @@
 class Projectile implements Cloneable {
-   private float xPos, yPos;// cost, upCost, atkSpd, hp, dmg;
+   private float xPos, yPos;
    private PImage sprite;
    private int dmg;
    private int speed;

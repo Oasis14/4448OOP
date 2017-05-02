@@ -1,6 +1,5 @@
 class Creep implements Cloneable {
   private int bounty;
-  private float angle;
   private PathPoint pathPoint;
   private PImage sprite;
   private float xPos, yPos;
@@ -17,7 +16,7 @@ class Creep implements Cloneable {
   Creep (String imageIn, int health, int speed) {
       this.speed = speed;
       this.hp = health;
-      this.max_hp_ = health;
+      this.max_hp = health;
       this.sprite = loadImage(imageIn);
       this.bounty = 10;
       this.state = "alive";
@@ -83,23 +82,23 @@ class Creep implements Cloneable {
  }
  
  
-   public Boolean collide(Projectile projectile){    
-    /** Vertex indices of rectangle
-    *         y
-    *   o -------- o
-    * x |          | x + sprite.height
-    *   o -------- o
-    *         y + sprite.height
-    **/
-    // Checks x position
-    
-    if( this.xPos + this.sprite.width >= projectile.getX()  &&  this.xPos <= projectile.getX()){
-      if(this.yPos + this.sprite.height >= projectile.getY() &&  this.yPos <= projectile.getY()){
-         return true;
-      }
+ public Boolean collide(Projectile projectile){    
+  /** Vertex indices of rectangle
+  *         y
+  *   o -------- o
+  * x |          | x + sprite.height
+  *   o -------- o
+  *         y + sprite.height
+  **/
+  // Checks x position
+  
+  if( this.xPos + this.sprite.width >= projectile.getX()  &&  this.xPos <= projectile.getX()){
+    if(this.yPos + this.sprite.height >= projectile.getY() &&  this.yPos <= projectile.getY()){
+       return true;
     }
-    return false;
   }
+  return false;
+}
  
  
  /**

@@ -21,13 +21,6 @@ class GameMenu extends Menu {
     advancedTower.update();
     arrowTower.update();
     
-    //if(locked == false){
-    //  //update buttons here
-
-    //}else{
-    // locked = false; 
-    //}
-    
     if(mouse.currentEvent == "click"){
      //check each button
      if(pause.pressed()){

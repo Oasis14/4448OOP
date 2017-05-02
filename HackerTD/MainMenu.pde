@@ -7,7 +7,7 @@ class MainMenu extends Menu{
  MainMenu(){
   super("mainMenu");
  }
- 
+
  
  void display(){
     beginShape();
@@ -31,12 +31,6 @@ class MainMenu extends Menu{
     newGame.update();
     resumeGame.update();
     exitGame.update();
-    //if(locked == false){
-    //  //update buttons here
-      
-    //}else{
-    // locked = false; 
-    //}
     
     if(mousePressed){
      //check each button
